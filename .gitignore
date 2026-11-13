@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Sphinx build intermediates
+docs/_build/
+manual/html/.doctrees/
+manual/html/.buildinfo
+
+# IDE
+.idea/
+.vscode/
+
+# Logs written by examples
+logs/

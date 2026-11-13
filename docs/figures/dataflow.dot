@@ -1,0 +1,15 @@
+digraph dataflow {
+  rankdir=LR; fontname="Helvetica"; node [fontname="Helvetica", fontsize=10, shape=box, style="rounded,filled", fillcolor="#eef3f8", color="#35557a"]; edge [fontname="Helvetica", fontsize=9, color="#35557a"];
+  subgraph cluster_src { label="Your program"; style=dashed; color="#888888";
+    code [label="Log methods\ninfo(), event(), report()"]; exc [label="Coded errors\nCoded warnings"]; hook [label="Hooks\n(unhandled exceptions,\nPython warnings)"]; }
+  cat [label="Message\ncatalogues", shape=cylinder, fillcolor="#fdf3d8"];
+  ctx [label="Context data", shape=note, fillcolor="#fdf3d8"];
+  logger [label="Structured\nlogger"];
+  filt [label="Filters\n(context, redaction,\nduplicates, rate limit)"];
+  subgraph cluster_out { label="Handlers and formatters"; style=dashed; color="#888888";
+    con [label="Console\n(plain or colour)"]; file [label="Log file\n(plain or JSON Lines)"]; store [label="Event store\n(memory)"]; cb [label="Callback"]; }
+  rep [label="Reports and\ncommand-line interface", fillcolor="#e6f4e6"];
+  code -> logger; exc -> logger; hook -> logger; cat -> logger [style=dashed, label="text, cause,\nremedy"]; ctx -> logger [style=dashed];
+  logger -> filt [label="record"]; filt -> con; filt -> file; filt -> store; filt -> cb;
+  file -> rep; store -> rep;
+}

@@ -1,0 +1,10 @@
+digraph recorder {
+  rankdir=LR; fontname="Helvetica"; node [fontname="Helvetica", fontsize=10, shape=box, style="rounded,filled", fillcolor="#eef3f8", color="#35557a"]; edge [fontname="Helvetica", fontsize=9, color="#35557a"];
+  rec [label="Record"];
+  q1 [label="Severity is the\nfile level or higher?", shape=diamond, fillcolor="#fdf3d8"];
+  mem [label="Keep the record\nin memory\n(last N records)", shape=cylinder, fillcolor="#fdf3d8"];
+  q2 [label="Severity is the\ntrigger or higher?", shape=diamond, fillcolor="#fdf3d8"];
+  flush [label="Write the kept\nrecords first\n(ANN-I-0340)", fillcolor="#f8e4e4"];
+  file [label="Log file", fillcolor="#e6f4e6"];
+  rec -> q1; q1 -> mem [label="No"]; q1 -> q2 [label="Yes"]; q2 -> file [label="No"]; q2 -> flush [label="Yes"]; flush -> file; mem -> flush [style=dashed];
+}

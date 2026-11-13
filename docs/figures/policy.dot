@@ -1,0 +1,15 @@
+digraph policy {
+  fontname="Helvetica"; node [fontname="Helvetica", fontsize=10, shape=box, style="rounded,filled", fillcolor="#eef3f8", color="#35557a"]; edge [fontname="Helvetica", fontsize=9, color="#35557a"];
+  start [label="The function raises\nan exception"];
+  match [label="Is the exception\nin the handled classes?", shape=diamond, fillcolor="#fdf3d8"];
+  pass [label="The exception continues\nwithout a record", fillcolor="#f8e4e4"];
+  rec [label="1. Record the exception\n(report)"];
+  cb [label="2. Call on_error\n(if given)"];
+  wrap [label="Is wrap given?", shape=diamond, fillcolor="#fdf3d8"];
+  new [label="3. Raise the new exception\nfrom the initial exception", fillcolor="#f8e4e4"];
+  re [label="Is reraise True?", shape=diamond, fillcolor="#fdf3d8"];
+  again [label="4. Raise the initial\nexception again", fillcolor="#f8e4e4"];
+  dflt [label="5. Return default", fillcolor="#e6f4e6"];
+  start -> match; match -> pass [label="No"]; match -> rec [label="Yes"]; rec -> cb; cb -> wrap;
+  wrap -> new [label="Yes"]; wrap -> re [label="No"]; re -> again [label="Yes"]; re -> dflt [label="No"];
+}
