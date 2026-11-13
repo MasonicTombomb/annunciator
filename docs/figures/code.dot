@@ -1,0 +1,8 @@
+digraph code {
+  fontname="Helvetica"; node [fontname="Helvetica", fontsize=11]; edge [color="#35557a"];
+  code [shape=record, style=filled, fillcolor="#eef3f8", fontname="Courier", fontsize=16, label="<p> APP | - | <s> E | - | <n> 0042"];
+  p [shape=plaintext, label="Catalogue prefix\n(two to eight characters)"];
+  s [shape=plaintext, label="Severity letter\n(T, D, I, N, W, E or C)"];
+  n [shape=plaintext, label="Message number\n(four digits)"];
+  code:p -> p; code:s -> s; code:n -> n;
+}

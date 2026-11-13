@@ -1,0 +1,10 @@
+digraph hierarchy {
+  rankdir=LR; fontname="Helvetica"; node [fontname="Helvetica", fontsize=10, shape=box, style="filled", fillcolor="#eef3f8", color="#35557a"]; edge [color="#35557a", arrowhead=empty, dir=back];
+  Exception [fillcolor="#eeeeee"]; UserWarning [fillcolor="#eeeeee"];
+  Exception -> CodedError;
+  CodedError -> ConfigurationError; CodedError -> ValidationError; CodedError -> DataError;
+  CodedError -> ResourceError; ResourceError -> ResourceNotFoundError; ResourceError -> ResourceAccessError;
+  CodedError -> OperationError; OperationError -> OperationTimeoutError; OperationError -> RetryExhaustedError;
+  CodedError -> DependencyError; CodedError -> InternalError; CodedError -> CatalogueError; CodedError -> AggregateError;
+  UserWarning -> CodedWarning; CodedWarning -> ConfigurationWarning; CodedWarning -> DataQualityWarning; CodedWarning -> PerformanceWarning; CodedWarning -> DeprecatedFeatureWarning;
+}

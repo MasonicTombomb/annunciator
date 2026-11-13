@@ -1,0 +1,1879 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><link rel="author" title="About these documents" href="about.html"><link rel="index" title="Index" href="#"><link rel="search" title="Search" href="search.html">
+
+    <!-- Generated with Sphinx 9.2.0 and Furo 2025.12.19 --><title>Index - annunciator 1.1.1 User Manual (ANN-UM-001)</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">annunciator 1.1.1 User Manual (ANN-UM-001)</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">annunciator 1.1.1 User Manual (ANN-UM-001)</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="identification.html">1. Document identification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">2. Information for use of this manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concept.html">3. Concept of operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">4. Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="procedures.html">5. Procedures</a><input aria-label="Toggle navigation of 5. Procedures" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="proc_quickstart.html">5.1. Record your first events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_configure.html">5.2. Configure the library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_log.html">5.3. Record events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_catalogue.html">5.4. Define a message catalogue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_errors.html">5.5. Raise and catch coded errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_warnings.html">5.6. Issue coded warnings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_handling.html">5.7. Apply an error policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_hooks.html">5.8. Record unhandled exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_reports.html">5.9. Examine and summarise a log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_sphinx.html">5.10. Document your messages with Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_longrun.html">5.11. Monitor a long run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_runs.html">5.12. Record and compare runs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_robust.html">5.13. Make the records robust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proc_devtools.html">5.14. Examine your code and share results</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="reference.html">6. Reference information</a><input aria-label="Toggle navigation of 6. Reference information" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ref_severity.html">6.1. Severities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ref_configuration.html">6.2. Configuration options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ref_errors.html">6.3. Error classes and warning classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ref_formats.html">6.4. Record formats and file formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ref_cli.html">6.5. Command-line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ref_api.html">6.6. Programming interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="messages.html">7. Messages and problem resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">8. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related.html">9. Related information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conformance.html">10. Conformity to standards</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#J"><strong>J</strong></a> | <a href="#K"><strong>K</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#Q"><strong>Q</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#V"><strong>V</strong></a> | <a href="#W"><strong>W</strong></a></div>
+</section>
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageCatalogue.add">add() (annunciator.catalogue.MessageCatalogue method)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.handling.ErrorCollector.add">(annunciator.handling.ErrorCollector method)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.handling.ErrorCollector.add_warning">add_warning() (annunciator.handling.ErrorCollector method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.AggregateError">AggregateError</a>
+</li>
+        <li><a href="messages.html#index-11">ANN-C-0201</a>
+</li>
+        <li><a href="messages.html#index-12">ANN-C-0202</a>
+</li>
+        <li><a href="messages.html#index-5">ANN-D-0010</a>
+</li>
+        <li><a href="messages.html#index-21">ANN-D-0306</a>
+</li>
+        <li><a href="messages.html#index-22">ANN-D-0307</a>
+</li>
+        <li><a href="messages.html#index-1">ANN-E-0001</a>
+</li>
+        <li><a href="messages.html#index-2">ANN-E-0002</a>
+</li>
+        <li><a href="messages.html#index-3">ANN-E-0003</a>
+</li>
+        <li><a href="messages.html#index-4">ANN-E-0004</a>
+</li>
+        <li><a href="messages.html#index-6">ANN-E-0101</a>
+</li>
+        <li><a href="messages.html#index-7">ANN-E-0102</a>
+</li>
+        <li><a href="messages.html#index-8">ANN-E-0103</a>
+</li>
+        <li><a href="messages.html#index-9">ANN-E-0104</a>
+</li>
+        <li><a href="messages.html#index-10">ANN-E-0105</a>
+</li>
+        <li><a href="messages.html#index-13">ANN-E-0203</a>
+</li>
+        <li><a href="messages.html#index-14">ANN-E-0204</a>
+</li>
+        <li><a href="messages.html#index-17">ANN-E-0302</a>
+</li>
+        <li><a href="messages.html#index-18">ANN-E-0303</a>
+</li>
+        <li><a href="messages.html#index-19">ANN-E-0304</a>
+</li>
+        <li><a href="messages.html#index-25">ANN-E-0310</a>
+</li>
+        <li><a href="messages.html#index-34">ANN-E-0403</a>
+</li>
+        <li><a href="messages.html#index-35">ANN-E-0501</a>
+</li>
+        <li><a href="messages.html#index-36">ANN-E-0510</a>
+</li>
+        <li><a href="messages.html#index-37">ANN-E-0511</a>
+</li>
+        <li><a href="messages.html#index-38">ANN-E-0601</a>
+</li>
+        <li><a href="messages.html#index-39">ANN-E-0602</a>
+</li>
+        <li><a href="messages.html#index-40">ANN-E-0603</a>
+</li>
+        <li><a href="messages.html#index-41">ANN-E-0604</a>
+</li>
+        <li><a href="messages.html#index-42">ANN-E-0605</a>
+</li>
+        <li><a href="messages.html#index-43">ANN-E-0606</a>
+</li>
+        <li><a href="messages.html#index-23">ANN-I-0308</a>
+</li>
+        <li><a href="messages.html#index-26">ANN-I-0320</a>
+</li>
+        <li><a href="messages.html#index-27">ANN-I-0330</a>
+</li>
+        <li><a href="messages.html#index-28">ANN-I-0331</a>
+</li>
+        <li><a href="messages.html#index-30">ANN-I-0333</a>
+</li>
+        <li><a href="messages.html#index-31">ANN-I-0340</a>
+</li>
+        <li><a href="messages.html#index-32">ANN-N-0401</a>
+</li>
+        <li><a href="messages.html#index-33">ANN-N-0402</a>
+</li>
+        <li><a href="messages.html#index-15">ANN-W-0205</a>
+</li>
+        <li><a href="messages.html#index-16">ANN-W-0301</a>
+</li>
+        <li><a href="messages.html#index-20">ANN-W-0305</a>
+</li>
+        <li><a href="messages.html#index-24">ANN-W-0309</a>
+</li>
+        <li><a href="messages.html#index-29">ANN-W-0332</a>
+</li>
+        <li><a href="messages.html#index-44">ANN-W-0611</a>
+</li>
+        <li><a href="messages.html#index-45">ANN-W-0612</a>
+</li>
+        <li><a href="messages.html#index-46">ANN-W-0613</a>
+</li>
+        <li><a href="messages.html#index-47">ANN-W-0614</a>
+</li>
+        <li><a href="messages.html#index-48">ANN-W-0615</a>
+</li>
+        <li><a href="messages.html#index-49">ANN-W-0616</a>
+</li>
+        <li>
+    annunciator.catalogue
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.catalogue">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    annunciator.checks
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.checks">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.cli
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.cli">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.config
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.config">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.context
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.context">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.errors
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.errors">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.events
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.events">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.filters
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.filters">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.formatters
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.formatters">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.handlers
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.handlers">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.handling
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.handling">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.hooks
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.hooks">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.htmlreport
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.htmlreport">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.integrity
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.integrity">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.levels
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.levels">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.lint
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.lint">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.logger
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.logger">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.multiprocess
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.multiprocess">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.provenance
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.provenance">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.recorder
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.recorder">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.report
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.report">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.sphinxext
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.sphinxext">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.testing
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.testing">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.warns
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.warns">module</a>
+</li>
+        </ul></li>
+        <li>
+    annunciator.watch
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.watch">module</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#index-0">API reference</a>
+</li>
+        <li><a href="conformance.html#index-0">ASD-STE100</a>
+</li>
+        <li><a href="ref_api.html#annunciator.testing.EventCapture.assert_logged">assert_logged() (annunciator.testing.EventCapture method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.testing.EventCapture.assert_no_problems">assert_no_problems() (annunciator.testing.EventCapture method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.testing.EventCapture.assert_not_logged">assert_not_logged() (annunciator.testing.EventCapture method)</a>
+</li>
+        <li><a href="proc_hooks.html#index-0">asyncio</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handlers.AsyncQueueHandler">AsyncQueueHandler (class in annunciator.handlers)</a>
+</li>
+        <li><a href="about.html#index-0">audience</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.watch.Watchdog.beat">beat() (annunciator.watch.Watchdog method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.bind">bind() (annunciator.logger.StructuredLogger method)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.context.bind">(in module annunciator.context)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.bound">bound (annunciator.logger.StructuredLogger property)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.cli.build_parser">build_parser() (in module annunciator.cli)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.EventReport.by_code">by_code (annunciator.report.EventReport attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.EventReport.by_fingerprint">by_fingerprint (annunciator.report.EventReport attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.EventReport.by_logger">by_logger (annunciator.report.EventReport attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.EventReport.by_severity">by_severity (annunciator.report.EventReport attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.handlers.CallbackHandler">CallbackHandler (class in annunciator.handlers)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.testing.capture_events">capture_events() (in module annunciator.testing)</a>
+</li>
+        <li><a href="glossary.html#term-catalogue"><strong>catalogue</strong></a>
+</li>
+        <li><a href="ref_formats.html#index-0">catalogue file</a>
+</li>
+        <li><a href="ref_api.html#annunciator.sphinxext.CatalogueDirective">CatalogueDirective (class in annunciator.sphinxext)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.CatalogueError">CatalogueError</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.catalogues">catalogues() (in module annunciator.catalogue)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handling.ErrorCollector.catch">catch() (annunciator.handling.ErrorCollector method)</a>
+</li>
+        <li><a href="glossary.html#term-cause"><strong>cause</strong></a>
+</li>
+        <li><a href="glossary.html#term-chain"><strong>chain</strong></a>
+</li>
+        <li><a href="ref_api.html#annunciator.integrity.chain_key_from_env">chain_key_from_env() (in module annunciator.integrity)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.integrity.ChainFormatter">ChainFormatter (class in annunciator.integrity)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.integrity.ChainResult">ChainResult (class in annunciator.integrity)</a>
+</li>
+        <li><a href="identification.html#index-0">change record</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.RunComparison.changed_codes">changed_codes (annunciator.report.RunComparison attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.checks.check">check() (in module annunciator.checks)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.checks.check_finite">check_finite() (in module annunciator.checks)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.checks.check_not_empty">check_not_empty() (in module annunciator.checks)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.checks.check_one_of">check_one_of() (in module annunciator.checks)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.checks.check_range">check_range() (in module annunciator.checks)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.checks.check_type">check_type() (in module annunciator.checks)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handlers.EventStoreHandler.clear">clear() (annunciator.handlers.EventStoreHandler method)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.testing.EventCapture.clear">(annunciator.testing.EventCapture method)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.context.clear_context">clear_context() (in module annunciator.context)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.recorder.FlightRecorderHandler.close">close() (annunciator.recorder.FlightRecorderHandler method)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.watch.Progress.close">(annunciator.watch.Progress method)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.lint.LintFinding.code">code (annunciator.lint.LintFinding attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.CODE_PATTERN">CODE_PATTERN (in module annunciator.catalogue)</a>
+</li>
+        <li><a href="glossary.html#term-coded-error"><strong>coded error</strong></a>
+
+        <ul>
+          <li><a href="proc_errors.html#index-0">procedure</a>
+</li>
+          <li><a href="ref_errors.html#index-0">reference</a>
+</li>
+        </ul></li>
+        <li><a href="glossary.html#term-coded-warning"><strong>coded warning</strong></a>
+
+        <ul>
+          <li><a href="proc_warnings.html#index-0">procedure</a>
+</li>
+          <li><a href="ref_errors.html#index-0">reference</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.errors.CodedError">CodedError</a>
+</li>
+        <li><a href="ref_api.html#annunciator.warns.CodedWarning">CodedWarning</a>
+</li>
+        <li><a href="ref_api.html#annunciator.filters.CodeFilter">CodeFilter (class in annunciator.filters)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.testing.EventCapture.codes">codes (annunciator.testing.EventCapture property)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.Severity.coerce">coerce() (annunciator.levels.Severity class method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.provenance.collect_manifest">collect_manifest() (in module annunciator.provenance)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.formatters.ColourFormatter">ColourFormatter (class in annunciator.formatters)</a>
+</li>
+        <li><a href="ref_cli.html#index-0">command-line interface</a>
+</li>
+        <li><a href="ref_cli.html#index-0">commands</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.compare_runs">compare_runs() (in module annunciator.report)</a>
+</li>
+        <li><a href="proc_runs.html#index-0">comparison of runs</a>
+</li>
+        <li><a href="concept.html#index-0">concept of operations</a>
+</li>
+        <li>
+    configuration
+
+        <ul>
+          <li><a href="proc_configure.html#index-0">procedure</a>
+</li>
+          <li><a href="ref_configuration.html#index-0">reference</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.errors.ConfigurationError">ConfigurationError</a>
+</li>
+        <li><a href="ref_api.html#annunciator.warns.ConfigurationWarning">ConfigurationWarning</a>
+</li>
+        <li><a href="ref_api.html#annunciator.config.configure">configure() (in module annunciator.config)</a>
+</li>
+        <li><a href="conformance.html#index-0">conformity</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handlers.ConsoleHandler">ConsoleHandler (class in annunciator.handlers)</a>
+</li>
+        <li><a href="glossary.html#term-context"><strong>context</strong></a>
+
+        <ul>
+          <li><a href="proc_log.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.context.context">context() (in module annunciator.context)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.filters.ContextFilter">ContextFilter (class in annunciator.filters)</a>
+</li>
+        <li><a href="about.html#index-0">conventions</a>
+</li>
+        <li><a href="glossary.html#term-correlation-identifier"><strong>correlation identifier</strong></a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.EventReport.count">count() (annunciator.report.EventReport method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handlers.EventStoreHandler.counts">counts() (annunciator.handlers.EventStoreHandler method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.Severity.CRITICAL">CRITICAL (annunciator.levels.Severity attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.critical">critical() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="proc_reports.html#index-0">CSV</a>
+
+        <ul>
+          <li><a href="ref_formats.html#index-0">format</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.config.current_config">current_config() (in module annunciator.config)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="concept.html#index-0">data flow</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.DataError">DataError</a>
+</li>
+        <li><a href="ref_api.html#annunciator.warns.DataQualityWarning">DataQualityWarning</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.Severity.DEBUG">DEBUG (annunciator.levels.Severity attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.debug">debug() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.AggregateError.default_code">default_code (annunciator.errors.AggregateError attribute)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.errors.OperationTimeoutError.default_code">(annunciator.errors.OperationTimeoutError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.errors.RetryExhaustedError.default_code">(annunciator.errors.RetryExhaustedError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.warns.DeprecatedFeatureWarning.default_code">(annunciator.warns.DeprecatedFeatureWarning attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.filters.DEFAULT_REDACT_KEYS">DEFAULT_REDACT_KEYS (in module annunciator.filters)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.CodedError.default_severity">default_severity (annunciator.errors.CodedError attribute)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.errors.InternalError.default_severity">(annunciator.errors.InternalError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.warns.CodedWarning.default_severity">(annunciator.warns.CodedWarning attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageCatalogue.define">define() (annunciator.catalogue.MessageCatalogue method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.DependencyError">DependencyError</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handling.deprecated">deprecated() (in module annunciator.handling)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.warns.DeprecatedFeatureWarning">DeprecatedFeatureWarning</a>
+</li>
+        <li><a href="proc_warnings.html#index-0">deprecation</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.AggregateError.describe">describe() (annunciator.errors.AggregateError method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.lint.LintFinding.detail">detail (annunciator.lint.LintFinding attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.recorder.FlightRecorderHandler.discard">discard() (annunciator.recorder.FlightRecorderHandler method)</a>
+</li>
+        <li><a href="identification.html#index-0">document identification</a>
+</li>
+        <li><a href="ref_api.html#annunciator.watch.Progress.done">done (annunciator.watch.Progress attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.filters.RateLimitFilter.dropped">dropped (annunciator.filters.RateLimitFilter attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.filters.DuplicateFilter">DuplicateFilter (class in annunciator.filters)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.handling.timed.elapsed">elapsed (annunciator.handling.timed attribute)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.watch.Progress.elapsed">(annunciator.watch.Progress property)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.handlers.CallbackHandler.emit">emit() (annunciator.handlers.CallbackHandler method)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.handlers.EventStoreHandler.emit">(annunciator.handlers.EventStoreHandler method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.recorder.FlightRecorderHandler.emit">(annunciator.recorder.FlightRecorderHandler method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.testing.EventCapture.emit">(annunciator.testing.EventCapture method)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.config.ENV_PREFIX">ENV_PREFIX (in module annunciator.config)</a>
+</li>
+        <li><a href="proc_configure.html#index-0">environment variable</a>
+
+        <ul>
+          <li><a href="ref_configuration.html#index-0">reference</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.levels.Severity.ERROR">ERROR (annunciator.levels.Severity attribute)</a>
+</li>
+        <li><a href="proc_handling.html#index-0">error collector</a>
+</li>
+        <li><a href="messages.html#index-0">error messages</a>
+</li>
+        <li><a href="glossary.html#term-error-policy"><strong>error policy</strong></a>
+
+        <ul>
+          <li><a href="proc_handling.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.error">error() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handling.ErrorCollector">ErrorCollector (class in annunciator.handling)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.AggregateError.errors">errors (annunciator.errors.AggregateError attribute)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.handling.ErrorCollector.errors">(annunciator.handling.ErrorCollector attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.provenance.Run.errors">(annunciator.provenance.Run property)</a>
+</li>
+        </ul></li>
+        <li><a href="glossary.html#term-event"><strong>event</strong></a>
+</li>
+        <li><a href="ref_api.html#annunciator.events.Event">Event (class in annunciator.events)</a>
+</li>
+        <li><a href="glossary.html#term-event-store"><strong>event store</strong></a>
+
+        <ul>
+          <li><a href="proc_reports.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.event">event() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.testing.EventCapture">EventCapture (class in annunciator.testing)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.EventReport">EventReport (class in annunciator.report)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.handlers.EventStoreHandler.events">events (annunciator.handlers.EventStoreHandler property)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.testing.EventCapture.events">(annunciator.testing.EventCapture attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.handlers.EventStoreHandler">EventStoreHandler (class in annunciator.handlers)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.every">every() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handling.guard.exception">exception (annunciator.handling.guard attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.exception">exception() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.events.ExceptionInfo">ExceptionInfo (class in annunciator.events)</a>
+</li>
+        <li><a href="proc_errors.html#index-0">exit status</a>
+
+        <ul>
+          <li><a href="ref_cli.html#index-0">commands</a>
+</li>
+          <li><a href="ref_errors.html#index-0">reference</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.errors.CatalogueError.exit_code">exit_code (annunciator.errors.CatalogueError attribute)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.errors.CodedError.exit_code">(annunciator.errors.CodedError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.errors.ConfigurationError.exit_code">(annunciator.errors.ConfigurationError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.errors.DataError.exit_code">(annunciator.errors.DataError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.errors.DependencyError.exit_code">(annunciator.errors.DependencyError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.errors.InternalError.exit_code">(annunciator.errors.InternalError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.errors.OperationTimeoutError.exit_code">(annunciator.errors.OperationTimeoutError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.errors.ResourceAccessError.exit_code">(annunciator.errors.ResourceAccessError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.errors.ResourceError.exit_code">(annunciator.errors.ResourceError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.errors.ResourceNotFoundError.exit_code">(annunciator.errors.ResourceNotFoundError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.errors.RetryExhaustedError.exit_code">(annunciator.errors.RetryExhaustedError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.errors.ValidationError.exit_code">(annunciator.errors.ValidationError attribute)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.provenance.Run.exit_code">(annunciator.provenance.Run property)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.report.EventReport.exit_code">exit_code() (annunciator.report.EventReport method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.explain">explain() (in module annunciator.catalogue)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.export_csv">export_csv() (in module annunciator.report)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.handling.guard.failed">failed (annunciator.handling.guard property)</a>
+</li>
+        <li><a href="glossary.html#term-field"><strong>field</strong></a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageDefinition.field_names">field_names (annunciator.catalogue.MessageDefinition property)</a>
+</li>
+        <li><a href="glossary.html#term-filter"><strong>filter</strong></a>
+</li>
+        <li><a href="ref_api.html#annunciator.filters.CodeFilter.filter">filter() (annunciator.filters.CodeFilter method)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.filters.ContextFilter.filter">(annunciator.filters.ContextFilter method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.filters.DuplicateFilter.filter">(annunciator.filters.DuplicateFilter method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.filters.LocalsFilter.filter">(annunciator.filters.LocalsFilter method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.filters.RateLimitFilter.filter">(annunciator.filters.RateLimitFilter method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.filters.RedactionFilter.filter">(annunciator.filters.RedactionFilter method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.filters.SeverityRangeFilter.filter">(annunciator.filters.SeverityRangeFilter method)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageCatalogue.find">find() (annunciator.catalogue.MessageCatalogue method)</a>
+</li>
+        <li><a href="glossary.html#term-fingerprint"><strong>fingerprint</strong></a>
+
+        <ul>
+          <li><a href="proc_longrun.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.events.fingerprint">fingerprint() (in module annunciator.events)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.provenance.Run.finish">finish() (annunciator.provenance.Run method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.EventReport.first">first (annunciator.report.EventReport attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.integrity.ChainResult.first_seq">first_seq (annunciator.integrity.ChainResult attribute)</a>
+</li>
+        <li><a href="glossary.html#term-flight-recorder"><strong>flight recorder</strong></a>
+
+        <ul>
+          <li><a href="proc_longrun.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.recorder.FlightRecorderHandler">FlightRecorderHandler (class in annunciator.recorder)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.recorder.FlightRecorderHandler.flush">flush() (annunciator.recorder.FlightRecorderHandler method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.recorder.FlightRecorderHandler.flushes">flushes (annunciator.recorder.FlightRecorderHandler attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageDefinition.format">format() (annunciator.catalogue.MessageDefinition method)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.formatters.JsonFormatter.format">(annunciator.formatters.JsonFormatter method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.formatters.PlainFormatter.format">(annunciator.formatters.PlainFormatter method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.integrity.ChainFormatter.format">(annunciator.integrity.ChainFormatter method)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.formatters.PlainFormatter.format_event">format_event() (annunciator.formatters.PlainFormatter method)</a>
+</li>
+        <li><a href="glossary.html#term-formatter"><strong>formatter</strong></a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageCatalogue.from_dict">from_dict() (annunciator.catalogue.MessageCatalogue class method)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.catalogue.MessageDefinition.from_dict">(annunciator.catalogue.MessageDefinition class method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.config.LogConfig.from_dict">(annunciator.config.LogConfig class method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.events.Event.from_dict">(annunciator.events.Event class method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.events.ExceptionInfo.from_dict">(annunciator.events.ExceptionInfo class method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.events.SourceLocation.from_dict">(annunciator.events.SourceLocation class method)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.config.LogConfig.from_env">from_env() (annunciator.config.LogConfig class method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.EventReport.from_events">from_events() (annunciator.report.EventReport class method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.events.ExceptionInfo.from_exception">from_exception() (annunciator.events.ExceptionInfo class method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.config.LogConfig.from_file">from_file() (annunciator.config.LogConfig class method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.events.Event.from_json">from_json() (annunciator.events.Event class method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.Severity.from_letter">from_letter() (annunciator.levels.Severity class method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.events.Event.from_record">from_record() (annunciator.events.Event class method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.integrity.GENESIS">GENESIS (in module annunciator.integrity)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageCatalogue.get">get() (annunciator.catalogue.MessageCatalogue method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.get_catalogue">get_catalogue() (in module annunciator.catalogue)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.context.get_context">get_context() (in module annunciator.context)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.get_logger">get_logger() (in module annunciator.logger)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.config.get_store">get_store() (in module annunciator.config)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.provenance.git_revision">git_revision() (in module annunciator.provenance)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.RunComparison.gone_codes">gone_codes (annunciator.report.RunComparison attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.RunComparison.gone_failures">gone_failures (annunciator.report.RunComparison attribute)</a>
+</li>
+        <li><a href="proc_handling.html#index-0">guard</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.handling.guard">(class in annunciator.handling)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="H" class="genindex-section">
+  <h2>H</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.handling.handle_errors">handle_errors() (in module annunciator.handling)</a>
+</li>
+        <li><a href="glossary.html#term-handler"><strong>handler</strong></a>
+</li>
+        <li><a href="ref_api.html#annunciator.sphinxext.CatalogueDirective.has_content">has_content (annunciator.sphinxext.CatalogueDirective attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.EventReport.has_errors">has_errors (annunciator.report.EventReport property)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.EventReport.has_warnings">has_warnings (annunciator.report.EventReport property)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="glossary.html#term-hook"><strong>hook</strong></a>
+</li>
+        <li>
+    hooks
+
+        <ul>
+          <li><a href="proc_hooks.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.hooks.hooks_installed">hooks_installed() (in module annunciator.hooks)</a>
+</li>
+        <li>
+    HTML report
+
+        <ul>
+          <li><a href="proc_devtools.html#index-0">procedure</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.report.RunComparison.identical">identical (annunciator.report.RunComparison property)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.Severity.INFO">INFO (annunciator.levels.Severity attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.info">info() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.multiprocess.init_worker">init_worker() (in module annunciator.multiprocess)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.hooks.install_asyncio_handler">install_asyncio_handler() (in module annunciator.hooks)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.hooks.install_hooks">install_hooks() (in module annunciator.hooks)</a>
+</li>
+        <li><a href="installation.html#index-0">installation</a>
+</li>
+        <li>
+    integrity
+
+        <ul>
+          <li><a href="proc_runs.html#index-0">procedure</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.errors.InternalError">InternalError</a>
+</li>
+        <li><a href="ref_api.html#annunciator.config.is_configured">is_configured() (in module annunciator.config)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.is_enabled_for">is_enabled_for() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.lint.LintFinding.is_error">is_error (annunciator.lint.LintFinding property)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.Severity.is_failure">is_failure (annunciator.levels.Severity property)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.Severity.is_problem">is_problem (annunciator.levels.Severity property)</a>
+</li>
+        <li><a href="conformance.html#index-0">ISO/IEC/IEEE 26514</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="J" class="genindex-section">
+  <h2>J</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="glossary.html#term-JSON-Lines"><strong>JSON Lines</strong></a>
+
+        <ul>
+          <li><a href="ref_formats.html#index-0">format</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.events.json_default">json_default() (in module annunciator.events)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.formatters.JsonFormatter">JsonFormatter (class in annunciator.formatters)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="K" class="genindex-section">
+  <h2>K</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.integrity.KEY_VARIABLE">KEY_VARIABLE (in module annunciator.integrity)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.lint.LintFinding.kind">kind (annunciator.lint.LintFinding attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="L" class="genindex-section">
+  <h2>L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.report.EventReport.last">last (annunciator.report.EventReport attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.integrity.ChainResult.last_seq">last_seq (annunciator.integrity.ChainResult attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.Severity.letter">letter (annunciator.levels.Severity property)</a>
+</li>
+        <li><a href="ref_severity.html#index-0">level</a>
+</li>
+        <li><a href="ref_api.html#annunciator.lint.LintFinding.line">line (annunciator.lint.LintFinding attribute)</a>
+</li>
+        <li>
+    lint
+
+        <ul>
+          <li><a href="proc_devtools.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.lint.lint_paths">lint_paths() (in module annunciator.lint)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.lint.LintFinding">LintFinding (class in annunciator.lint)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageCatalogue.load">load() (annunciator.catalogue.MessageCatalogue class method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    local variables
+
+        <ul>
+          <li><a href="proc_robust.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.filters.LocalsFilter">LocalsFilter (class in annunciator.filters)</a>
+</li>
+        <li><a href="proc_configure.html#index-0">log file</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.log">log() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handling.log_calls">log_calls() (in module annunciator.handling)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.config.LogConfig">LogConfig (class in annunciator.config)</a>
+</li>
+        <li><a href="glossary.html#term-logger"><strong>logger</strong></a>
+
+        <ul>
+          <li><a href="proc_log.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.catalogue.lookup">lookup() (in module annunciator.catalogue)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.cli.main">main() (in module annunciator.cli)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.make_code">make_code() (in module annunciator.catalogue)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handlers.make_file_handler">make_file_handler() (in module annunciator.handlers)</a>
+</li>
+        <li><a href="glossary.html#term-manifest"><strong>manifest</strong></a>
+
+        <ul>
+          <li><a href="proc_runs.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.provenance.Run.manifest">manifest (annunciator.provenance.Run attribute)</a>
+</li>
+        <li><a href="glossary.html#term-message-catalogue"><strong>message catalogue</strong></a>
+
+        <ul>
+          <li><a href="proc_catalogue.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="glossary.html#term-message-code"><strong>message code</strong></a>, <a href="concept.html#index-0">[1]</a>
+
+        <ul>
+          <li><a href="proc_catalogue.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="glossary.html#term-message-definition"><strong>message definition</strong></a>
+</li>
+        <li><a href="proc_sphinx.html#index-0">message reference</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageCatalogue">MessageCatalogue (class in annunciator.catalogue)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageDefinition">MessageDefinition (class in annunciator.catalogue)</a>
+</li>
+        <li><a href="messages.html#index-0">messages</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.testing.EventCapture.messages">(annunciator.testing.EventCapture property)</a>
+</li>
+        </ul></li>
+        <li>
+    module
+
+        <ul>
+          <li><a href="ref_api.html#module-annunciator.catalogue">annunciator.catalogue</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.checks">annunciator.checks</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.cli">annunciator.cli</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.config">annunciator.config</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.context">annunciator.context</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.errors">annunciator.errors</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.events">annunciator.events</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.filters">annunciator.filters</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.formatters">annunciator.formatters</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.handlers">annunciator.handlers</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.handling">annunciator.handling</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.hooks">annunciator.hooks</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.htmlreport">annunciator.htmlreport</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.integrity">annunciator.integrity</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.levels">annunciator.levels</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.lint">annunciator.lint</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.logger">annunciator.logger</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.multiprocess">annunciator.multiprocess</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.provenance">annunciator.provenance</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.recorder">annunciator.recorder</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.report">annunciator.report</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.sphinxext">annunciator.sphinxext</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.testing">annunciator.testing</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.warns">annunciator.warns</a>
+</li>
+          <li><a href="ref_api.html#module-annunciator.watch">annunciator.watch</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#index-0">modules</a>
+</li>
+        <li><a href="ref_api.html#annunciator.sphinxext.msg_role">msg_role() (in module annunciator.sphinxext)</a>
+</li>
+        <li>
+    multiprocessing
+
+        <ul>
+          <li><a href="proc_robust.html#index-0">procedure</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="N" class="genindex-section">
+  <h2>N</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.name">name (annunciator.logger.StructuredLogger property)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.provenance.Run.name">(annunciator.provenance.Run attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="installation.html#index-0">necessary software</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.RunComparison.new_codes">new_codes (annunciator.report.RunComparison attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.context.new_correlation_id">new_correlation_id() (in module annunciator.context)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.RunComparison.new_failures">new_failures (annunciator.report.RunComparison attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.Severity.NOTICE">NOTICE (annunciator.levels.Severity attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.notice">notice() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageDefinition.number">number (annunciator.catalogue.MessageDefinition property)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="O" class="genindex-section">
+  <h2>O</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.handling.ErrorCollector.ok">ok (annunciator.handling.ErrorCollector property)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.integrity.ChainResult.ok">(annunciator.integrity.ChainResult property)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.once">once() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.OperationError">OperationError</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.errors.OperationTimeoutError">OperationTimeoutError</a>
+</li>
+        <li><a href="ref_api.html#annunciator.config.LogConfig.option_names">option_names() (annunciator.config.LogConfig class method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.sphinxext.CatalogueDirective.option_spec">option_spec (annunciator.sphinxext.CatalogueDirective attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.sphinxext.CatalogueDirective.optional_arguments">optional_arguments (annunciator.sphinxext.CatalogueDirective attribute)</a>
+</li>
+        <li><a href="ref_configuration.html#index-0">options</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.catalogue.parse_code">parse_code() (in module annunciator.catalogue)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.integrity.ChainResult.path">path (annunciator.integrity.ChainResult attribute)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.lint.LintFinding.path">(annunciator.lint.LintFinding attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.warns.PerformanceWarning">PerformanceWarning</a>
+</li>
+        <li><a href="ref_formats.html#index-0">plain text format</a>
+</li>
+        <li><a href="ref_api.html#annunciator.formatters.PlainFormatter">PlainFormatter (class in annunciator.formatters)</a>
+</li>
+        <li><a href="glossary.html#term-prefix"><strong>prefix</strong></a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.catalogue.MessageDefinition.prefix">(annunciator.catalogue.MessageDefinition property)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.handlers.AsyncQueueHandler.prepare">prepare() (annunciator.handlers.AsyncQueueHandler method)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.multiprocess.ProcessQueueHandler.prepare">(annunciator.multiprocess.ProcessQueueHandler method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="messages.html#index-0">problem resolution</a>
+</li>
+        <li><a href="ref_api.html#annunciator.integrity.ChainResult.problems">problems (annunciator.integrity.ChainResult attribute)</a>
+</li>
+        <li><a href="procedures.html#index-0">procedures</a>
+</li>
+        <li><a href="ref_api.html#annunciator.multiprocess.ProcessQueueHandler">ProcessQueueHandler (class in annunciator.multiprocess)</a>
+</li>
+        <li>
+    progress
+
+        <ul>
+          <li><a href="proc_longrun.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.watch.Progress">Progress (class in annunciator.watch)</a>
+</li>
+        <li><a href="proc_devtools.html#index-0">pytest</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="Q" class="genindex-section">
+  <h2>Q</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="proc_quickstart.html#index-0">quick start</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.handling.ErrorCollector.raise_if_errors">raise_if_errors() (annunciator.handling.ErrorCollector method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.filters.RateLimitFilter">RateLimitFilter (class in annunciator.filters)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.read_events">read_events() (in module annunciator.report)</a>
+</li>
+        <li><a href="glossary.html#term-record"><strong>record</strong></a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.record_suppressed_summary">record_suppressed_summary() (in module annunciator.logger)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.integrity.ChainResult.records">records (annunciator.integrity.ChainResult attribute)</a>
+</li>
+        <li><a href="glossary.html#term-redaction"><strong>redaction</strong></a>, <a href="proc_log.html#index-0">[1]</a>
+</li>
+        <li><a href="ref_api.html#annunciator.filters.RedactionFilter">RedactionFilter (class in annunciator.filters)</a>
+</li>
+        <li><a href="reference.html#index-0">reference information</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.register_catalogue">register_catalogue() (in module annunciator.catalogue)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.register_levels">register_levels() (in module annunciator.levels)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.RunComparison.regression">regression (annunciator.report.RunComparison property)</a>
+</li>
+        <li><a href="related.html#index-0">related information</a>
+</li>
+        <li><a href="glossary.html#term-remedy"><strong>remedy</strong></a>
+</li>
+        <li><a href="installation.html#index-0">removal</a>
+</li>
+        <li><a href="proc_longrun.html#index-0">repeated messages</a>
+</li>
+        <li><a href="ref_api.html#annunciator.config.LogConfig.replace">replace() (annunciator.config.LogConfig method)</a>
+</li>
+        <li><a href="glossary.html#term-replacement-field"><strong>replacement field</strong></a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    report
+
+        <ul>
+          <li><a href="proc_reports.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.report">report() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.sphinxext.CatalogueDirective.required_arguments">required_arguments (annunciator.sphinxext.CatalogueDirective attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.reset_occurrences">reset_occurrences() (in module annunciator.logger)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.ResourceAccessError">ResourceAccessError</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.ResourceError">ResourceError</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.ResourceNotFoundError">ResourceNotFoundError</a>
+</li>
+        <li><a href="proc_handling.html#index-0">retry</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handling.retry">retry() (in module annunciator.handling)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.errors.RetryExhaustedError">RetryExhaustedError</a>
+</li>
+        <li><a href="glossary.html#term-rotation"><strong>rotation</strong></a>, <a href="proc_configure.html#index-0">[1]</a>
+</li>
+        <li><a href="glossary.html#term-run"><strong>run</strong></a>
+
+        <ul>
+          <li><a href="proc_runs.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.provenance.Run">Run (class in annunciator.provenance)</a>
+</li>
+        <li><a href="glossary.html#term-run-manifest"><strong>run manifest</strong></a>
+</li>
+        <li><a href="ref_api.html#annunciator.provenance.Run.run_id">run_id (annunciator.provenance.Run attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.RunComparison">RunComparison (class in annunciator.report)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageCatalogue.save">save() (annunciator.catalogue.MessageCatalogue method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.provenance.Run.save_manifest">save_manifest() (annunciator.provenance.Run method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageCatalogue.select">select() (annunciator.catalogue.MessageCatalogue method)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.handlers.EventStoreHandler.select">(annunciator.handlers.EventStoreHandler method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.testing.EventCapture.select">(annunciator.testing.EventCapture method)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.report.select_events">select_events() (in module annunciator.report)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.set_level">set_level() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.sphinxext.setup">setup() (in module annunciator.sphinxext)</a>
+</li>
+        <li><a href="glossary.html#term-severity"><strong>severity</strong></a>, <a href="concept.html#index-0">[1]</a>
+
+        <ul>
+          <li><a href="ref_severity.html#index-0">reference</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageDefinition.severity">severity (annunciator.catalogue.MessageDefinition property)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.Severity">Severity (class in annunciator.levels)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.RunComparison.severity_changes">severity_changes (annunciator.report.RunComparison attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.SeverityLike">SeverityLike (in module annunciator.levels)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.filters.SeverityRangeFilter">SeverityRangeFilter (class in annunciator.filters)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.config.shutdown">shutdown() (in module annunciator.config)</a>
+</li>
+        <li><a href="about.html#index-0">Simplified Technical English</a>
+</li>
+        <li><a href="glossary.html#term-soft-check"><strong>soft check</strong></a>
+
+        <ul>
+          <li><a href="proc_robust.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.events.SourceLocation">SourceLocation (class in annunciator.events)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    Sphinx extension
+
+        <ul>
+          <li><a href="proc_sphinx.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="glossary.html#term-stall"><strong>stall</strong></a>, <a href="proc_longrun.html#index-0">[1]</a>
+</li>
+        <li><a href="ref_api.html#annunciator.watch.Watchdog.stalls">stalls (annunciator.watch.Watchdog attribute)</a>
+</li>
+        <li><a href="related.html#index-0">standards</a>
+</li>
+        <li><a href="ref_api.html#annunciator.watch.Watchdog.start">start() (annunciator.watch.Watchdog method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.multiprocess.start_listener">start_listener() (in module annunciator.multiprocess)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.provenance.start_run">start_run() (in module annunciator.provenance)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.provenance.Run.status">status (annunciator.provenance.Run attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.stdlib">stdlib (annunciator.logger.StructuredLogger property)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.watch.Watchdog.stop">stop() (annunciator.watch.Watchdog method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.multiprocess.stop_listener">stop_listener() (in module annunciator.multiprocess)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handlers.ConsoleHandler.stream">stream (annunciator.handlers.ConsoleHandler property)</a>
+</li>
+        <li><a href="glossary.html#term-structured-field"><strong>structured field</strong></a>
+</li>
+        <li><a href="proc_log.html#index-0">structured fields</a>
+</li>
+        <li><a href="glossary.html#term-structured-logger"><strong>structured logger</strong></a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger">StructuredLogger (class in annunciator.logger)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.summarise">summarise() (in module annunciator.report)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handling.ErrorCollector.summary">summary() (annunciator.handling.ErrorCollector method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.formatters.supports_colour">supports_colour() (in module annunciator.formatters)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.suppressed_counts">suppressed_counts() (in module annunciator.logger)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="proc_runs.html#index-0">tamper-evident log</a>
+</li>
+        <li><a href="ref_api.html#annunciator.sphinxext.target_name">target_name() (in module annunciator.sphinxext)</a>
+</li>
+        <li>
+    tests
+
+        <ul>
+          <li><a href="proc_devtools.html#index-0">procedure</a>
+</li>
+        </ul></li>
+        <li><a href="proc_hooks.html#index-0">thread</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.throttle">throttle() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="proc_handling.html#index-0">timed</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.handling.timed">(class in annunciator.handling)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.catalogue.MessageCatalogue.to_dict">to_dict() (annunciator.catalogue.MessageCatalogue method)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.catalogue.MessageDefinition.to_dict">(annunciator.catalogue.MessageDefinition method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.config.LogConfig.to_dict">(annunciator.config.LogConfig method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.events.Event.to_dict">(annunciator.events.Event method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.events.ExceptionInfo.to_dict">(annunciator.events.ExceptionInfo method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.events.SourceLocation.to_dict">(annunciator.events.SourceLocation method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.report.EventReport.to_dict">(annunciator.report.EventReport method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.report.RunComparison.to_dict">(annunciator.report.RunComparison method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.events.Event.to_json">to_json() (annunciator.events.Event method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.integrity.ChainResult.to_text">to_text() (annunciator.integrity.ChainResult method)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.lint.LintFinding.to_text">(annunciator.lint.LintFinding method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.report.EventReport.to_text">(annunciator.report.EventReport method)</a>
+</li>
+          <li><a href="ref_api.html#annunciator.report.RunComparison.to_text">(annunciator.report.RunComparison method)</a>
+</li>
+        </ul></li>
+        <li><a href="ref_api.html#annunciator.report.EventReport.total">total (annunciator.report.EventReport attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.Severity.TRACE">TRACE (annunciator.levels.Severity attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.trace">trace() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="glossary.html#term-traceback"><strong>traceback</strong></a>
+</li>
+        <li><a href="ref_api.html#annunciator.watch.track">track() (in module annunciator.watch)</a>
+</li>
+        <li><a href="messages.html#index-0">troubleshooting</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="U" class="genindex-section">
+  <h2>U</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.context.unbind">unbind() (in module annunciator.context)</a>
+</li>
+        <li><a href="proc_hooks.html#index-0">unhandled exception</a>
+</li>
+        <li><a href="ref_api.html#annunciator.hooks.uninstall_hooks">uninstall_hooks() (in module annunciator.hooks)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.catalogue.unregister_catalogue">unregister_catalogue() (in module annunciator.catalogue)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.watch.Progress.update">update() (annunciator.watch.Progress method)</a>
+</li>
+        <li><a href="installation.html#index-0">upgrade</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="V" class="genindex-section">
+  <h2>V</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.errors.ValidationError">ValidationError</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.integrity.verify_chain">verify_chain() (in module annunciator.integrity)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="W" class="genindex-section">
+  <h2>W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ref_api.html#annunciator.warns.warn">warn() (in module annunciator.warns)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.levels.Severity.WARNING">WARNING (annunciator.levels.Severity attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.logger.StructuredLogger.warning">warning() (annunciator.logger.StructuredLogger method)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.handling.ErrorCollector.warnings">warnings (annunciator.handling.ErrorCollector attribute)</a>
+
+        <ul>
+          <li><a href="ref_api.html#annunciator.provenance.Run.warnings">(annunciator.provenance.Run property)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="glossary.html#term-watchdog"><strong>watchdog</strong></a>, <a href="proc_longrun.html#index-0">[1]</a>
+</li>
+        <li><a href="ref_api.html#annunciator.watch.Watchdog">Watchdog (class in annunciator.watch)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.EventReport.worst">worst (annunciator.report.EventReport attribute)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.report.write_events">write_events() (in module annunciator.report)</a>
+</li>
+        <li><a href="ref_api.html#annunciator.htmlreport.write_html_report">write_html_report() (in module annunciator.htmlreport)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Tom Scott
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 2026-11-13</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=58fbf978"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>
