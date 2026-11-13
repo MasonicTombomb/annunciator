@@ -120,12 +120,12 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v4
         with:
           miniforge-version: latest
-          auto-activate-base: true
-          activate-environment: ""
+          auto-activate: true
+          activate-environment: base
+          conda-remove-defaults: true
       - name: Build
         run: |
           conda install -y conda-build anaconda-client
-          export PKG_VERSION="${GITHUB_REF_NAME#v}"
           conda build conda --output-folder conda-out --no-anaconda-upload
       - uses: actions/upload-artifact@v7
         with:

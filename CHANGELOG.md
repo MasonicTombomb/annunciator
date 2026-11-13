@@ -1,5 +1,13 @@
 # Change record
 
+## 1.1.2 (2026-11-13)
+
+Changed:
+
+- The conda package gets its version from `src/annunciator/_version.py`.
+  Release 1.1.1 has no conda package.
+- The release workflow uses Node 24 versions of the GitHub actions.
+
 ## 1.1.1 (2026-11-13)
 
 Changed:
