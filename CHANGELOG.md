@@ -1,5 +1,25 @@
 # Change record
 
+## 1.1.3 (2026-11-19)
+
+Fixed:
+
+- `annunciator lint` no longer reports `missing-field` for replacement
+  fields named like a parameter of a different function (for example
+  `operation`, `category` or `key` in `log.event(...)`). The check now uses
+  the parameters of the called function: `event`, `warn`, a coded error or
+  warning class, or else the parameters of all functions that take `code=`.
+  The lint of the annunciator source code now gives no findings.
+- `annunciator lint` now examines the fields of `warn(None, ...)` and of
+  calls with `message=None`. `None` is not a message text.
+- `annunciator lint`: type fixes and removal of an unused variable.
+
+Added:
+
+- Tests of `annunciator lint` (`tests/test_lint.py`) and the optional
+  dependency group `test` (`pip install -e .[test]`).
+- `sphinx_rtd_theme` in the optional dependency group `docs`.
+
 ## 1.1.2 (2026-11-13)
 
 Changed:

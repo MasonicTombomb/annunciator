@@ -31,19 +31,39 @@ Examples
 from __future__ import annotations
 
 import ast
+import inspect
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Sequence, Set, Union
+from typing import (
+    Dict, FrozenSet, Iterable, List, Optional, Sequence, Set, Tuple, Type,
+    Union,
+)
 
+from ._coded import CodedMixin
 from .catalogue import CODE_PATTERN, catalogues, lookup
 
 __all__ = ["LintFinding", "lint_paths"]
 
-#: Keyword arguments that are not replacement fields.
-_RESERVED = {
+#: Parameters of ``StructuredLogger.event``. ``event`` gives all other
+#: keyword arguments to the message text (``**fields``), also names such as
+#: ``operation``, ``category`` or ``key``.
+_EVENT_PARAMETERS = frozenset({"code", "strict", "exc_info", "stacklevel"})
+
+#: Parameters of :func:`annunciator.warn`.
+_WARN_PARAMETERS = frozenset(
+    {"message", "category", "code", "stacklevel", "context"}
+)
+
+#: Keyword arguments that are not replacement fields in a call to a
+#: function that the check does not know. This is the union of the
+#: parameters of the functions that take a ``code=`` keyword: the log
+#: methods (``log``, ``info``, ..., ``once``, ``every``, ``throttle``),
+#: ``warn``, the coded errors and warnings and the soft checks.
+_RESERVED = frozenset({
     "code", "strict", "exc_info", "stack_info", "stacklevel", "context",
-    "cause", "remedy", "category", "severity", "logger", "key", "operation",
-}
+    "cause", "remedy", "category", "severity", "logger", "key", "message",
+    "on_fail", "error",
+})
 
 
 @dataclass(frozen=True)
@@ -93,6 +113,87 @@ def _literal_code(node: Optional[ast.AST]) -> Optional[str]:
     return None
 
 
+def _is_none(node: Optional[ast.AST]) -> bool:
+    return isinstance(node, ast.Constant) and node.value is None
+
+
+def _gives_message(node: ast.Call) -> bool:
+    """Return ``True`` if a call gives its own message text.
+
+    A message text replaces the text of the definition, so the call does
+    not need the replacement fields. ``None`` (for example
+    ``warn(None, DataQualityWarning, code=...)``) is not a message text.
+    """
+    if node.args and not _is_none(node.args[0]):
+        return True
+    return any(
+        keyword.arg == "message" and not _is_none(keyword.value)
+        for keyword in node.keywords
+    )
+
+
+def _callee_name(node: ast.Call) -> Optional[str]:
+    if isinstance(node.func, ast.Name):
+        return node.func.id
+    if isinstance(node.func, ast.Attribute):
+        return node.func.attr
+    return None
+
+
+def _init_parameters(cls: type) -> Set[str]:
+    """Return the named parameters of ``__init__`` in the coded part of the MRO."""
+    names: Set[str] = set()
+    for klass in cls.__mro__:
+        if not (isinstance(klass, type) and issubclass(klass, CodedMixin)):
+            continue
+        init = vars(klass).get("__init__")
+        if not callable(init):
+            continue
+        try:
+            signature = inspect.signature(init)
+        except (TypeError, ValueError):
+            continue
+        names.update(
+            name
+            for name, parameter in signature.parameters.items()
+            if name != "self"
+            and parameter.kind
+            not in (parameter.VAR_POSITIONAL, parameter.VAR_KEYWORD)
+        )
+    return names
+
+
+def _coded_classes() -> Dict[str, Tuple[FrozenSet[str], FrozenSet[str]]]:
+    """Map the names of the loaded coded errors and warnings to their data.
+
+    The data is the set of parameters that are not replacement fields,
+    and the set of fields that the class supplies itself. If two classes
+    have the same name, the sets are joined, so that the check does not
+    report a field that one of the classes accepts.
+    """
+    from .errors import AggregateError
+
+    found: Dict[str, Tuple[Set[str], Set[str]]] = {}
+    pending: List[Type[CodedMixin]] = [CodedMixin]
+    seen: Set[Type[CodedMixin]] = set()
+    while pending:
+        cls = pending.pop()
+        if cls in seen:
+            continue
+        seen.add(cls)
+        pending.extend(cls.__subclasses__())
+        if cls is CodedMixin:
+            continue  # the base class is not called with a code
+        parameters, implied = found.setdefault(cls.__name__, (set(), set()))
+        parameters.update(_init_parameters(cls) | {"code"})
+        if issubclass(cls, AggregateError):
+            implied.add("count")  # set from the length of ``errors``
+    return {
+        name: (frozenset(parameters), frozenset(implied))
+        for name, (parameters, implied) in found.items()
+    }
+
+
 def _python_files(paths: Iterable[Union[str, Path]]) -> List[Path]:
     files: List[Path] = []
     for item in paths:
@@ -138,6 +239,7 @@ def lint_paths(
     wanted: Set[str] = set(prefixes) if prefixes else set(registered)
     findings: List[LintFinding] = []
     used: Dict[str, int] = {}
+    coded = _coded_classes()
 
     for file in _python_files(paths):
         try:
@@ -148,34 +250,48 @@ def lint_paths(
         reported: Set[int] = set()
         for node in ast.walk(tree):
             if isinstance(node, ast.Call):
-                code = None
-                target: Optional[ast.AST] = None
+                call_code: Optional[str] = None
                 is_event = (
                     isinstance(node.func, ast.Attribute)
                     and node.func.attr == "event"
                 )
                 if is_event and node.args:
-                    target = node.args[0]
-                    code = _literal_code(target)
+                    call_code = _literal_code(node.args[0])
                 for keyword in node.keywords:
                     if keyword.arg == "code" and _literal_code(keyword.value):
-                        target = keyword.value
-                        code = _literal_code(keyword.value)
-                definition = lookup(code) if code else None
-                if definition is None or code.split("-")[0] not in wanted:
+                        call_code = _literal_code(keyword.value)
+                if not call_code or call_code.split("-")[0] not in wanted:
+                    continue
+                definition = lookup(call_code)
+                if definition is None:
                     continue
                 if any(keyword.arg is None for keyword in node.keywords):
                     continue  # ``**fields``: the values are not known
-                given = {keyword.arg for keyword in node.keywords} - _RESERVED
+                # Only the parameters of the called function are not
+                # replacement fields. A name that is a parameter of one
+                # function can be a field of another (``event`` gives
+                # ``operation``, ``key`` or ``category`` to the text).
+                callee = _callee_name(node)
+                implied: FrozenSet[str] = frozenset()
+                if is_event:
+                    reserved = _EVENT_PARAMETERS
+                elif callee == "warn":
+                    reserved = _WARN_PARAMETERS
+                elif callee is not None and callee in coded:
+                    reserved, implied = coded[callee]
+                else:
+                    reserved = _RESERVED
+                given = {keyword.arg for keyword in node.keywords} - reserved
+                given |= implied
                 missing = [
                     name for name in definition.field_names if name not in given
                 ]
                 # A message text that the call gives replaces the fields.
-                has_message = bool(node.args) and not is_event
+                has_message = not is_event and _gives_message(node)
                 if missing and not has_message:
                     findings.append(
                         LintFinding(
-                            str(file), node.lineno, "missing-field", code,
+                            str(file), node.lineno, "missing-field", call_code,
                             "no value for: " + ", ".join(missing),
                         )
                     )

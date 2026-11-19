@@ -32,7 +32,8 @@ Issues = "https://github.com/MasonicTombomb/annunciator/issues"
 
 [project.optional-dependencies]
 toml = ["tomli>=2.0; python_version < '3.11'"]
-docs = ["sphinx>=7.2", "furo>=2024.1"]
+docs = ["sphinx>=7.2", "furo>=2024.1", "sphinx_rtd_theme"]
+test = ["pytest>=7"]
 
 [project.scripts]
 annunciator = "annunciator.cli:main"
