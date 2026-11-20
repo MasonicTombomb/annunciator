@@ -101,6 +101,9 @@ Conventions
      - The prompt of the interactive Python interpreter. Do not type it.
    * - ``$`` or a line without prompt in a ``console`` block
      - A command for the terminal.
+   * - A label with an amber mark, for example PROCEDURE
+     - The start of a part of a procedure: Purpose, Before you start,
+       Procedure or Result.
 
 Critical information
 --------------------
@@ -118,7 +121,8 @@ cannot cause injury to persons. Thus the manual contains no warnings.
    A note gives you information that helps you to do a task.
 
 A caution or a note that applies to a step comes immediately before that
-step.
+step. A caution has a red title. A note has a blue title. The title also
+contains the word "Caution" or "Note".
 
 Language
 --------

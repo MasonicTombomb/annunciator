@@ -1,0 +1,250 @@
+% annunciatortheme.sty -- panel style of the PDF form of the manual.
+%
+% docs/conf.py loads this package in the LaTeX preamble, after the package
+% "sphinx". Before it loads the package, conf.py defines these macros:
+%   \anndocnumber  \annissue  \anndate  \annversion  \annsubtitle
+% The colours and the logo come from annunciatorlogo.sty.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{annunciatortheme}[2026/11/20 annunciator panel style for Sphinx]
+\RequirePackage{annunciatorlogo}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+
+% -- Fonts -----------------------------------------------------------------
+% Headings: Roboto Condensed Bold. Body text: Latin Modern (fontpkg).
+\newcommand*\annheadfont{\annwordfont}
+\newcommand*\annheadfontregular{%
+  \fontencoding{T1}\fontfamily{Roboto-LF}\fontseries{condensed}%
+  \fontshape{n}\selectfont}
+\renewcommand*\py@HeaderFamily{\annheadfont}
+
+% -- Colours of Sphinx elements --------------------------------------------
+\sphinxsetup{%
+  TitleColor={HTML}{1E2A33},
+  InnerLinkColor={HTML}{8F5B00},
+  OuterLinkColor={HTML}{2F6FA3},
+  TableRowColorHeader={HTML}{1E2A33},
+  TableRowColorOdd={HTML}{FFFFFF},
+  TableRowColorEven={HTML}{F6F4EF},
+  pre_background-TeXcolor={HTML}{F5F3EE},
+  pre_border-TeXcolor={HTML}{D5CFC0},
+  % Notes: advisory blue.
+  div.note_border-TeXcolor={HTML}{2F6FA3},
+  div.note_background-TeXcolor={HTML}{F3F7FB},
+  div.note_title-background-TeXcolor={HTML}{2F6FA3},
+  div.note_title-foreground-TeXcolor={HTML}{FFFFFF},
+  div.seealso_border-TeXcolor={HTML}{5B6B78},
+  div.seealso_title-background-TeXcolor={HTML}{5B6B78},
+  div.seealso_title-foreground-TeXcolor={HTML}{FFFFFF},
+  % Warnings: lamp amber.
+  div.warning_border-TeXcolor={HTML}{F5A800},
+  div.warning_background-TeXcolor={HTML}{FFF8E5},
+  div.warning_title-background-TeXcolor={HTML}{F5A800},
+  div.warning_title-foreground-TeXcolor={HTML}{1E2A33},
+  div.important_border-TeXcolor={HTML}{F5A800},
+  div.important_background-TeXcolor={HTML}{FFF8E5},
+  div.important_title-background-TeXcolor={HTML}{F5A800},
+  div.important_title-foreground-TeXcolor={HTML}{1E2A33},
+  div.attention_border-TeXcolor={HTML}{F5A800},
+  div.attention_background-TeXcolor={HTML}{FFF8E5},
+  div.attention_title-background-TeXcolor={HTML}{F5A800},
+  div.attention_title-foreground-TeXcolor={HTML}{1E2A33},
+  % Cautions and dangers: alarm red.
+  div.caution_border-TeXcolor={HTML}{C8102E},
+  div.caution_background-TeXcolor={HTML}{FCEEF0},
+  div.caution_title-background-TeXcolor={HTML}{C8102E},
+  div.caution_title-foreground-TeXcolor={HTML}{FFFFFF},
+  div.danger_border-TeXcolor={HTML}{C8102E},
+  div.danger_background-TeXcolor={HTML}{FCEEF0},
+  div.danger_title-background-TeXcolor={HTML}{C8102E},
+  div.danger_title-foreground-TeXcolor={HTML}{FFFFFF},
+  div.error_border-TeXcolor={HTML}{C8102E},
+  div.error_background-TeXcolor={HTML}{FCEEF0},
+  div.error_title-background-TeXcolor={HTML}{C8102E},
+  div.error_title-foreground-TeXcolor={HTML}{FFFFFF},
+  % Tips and hints: normal green.
+  div.tip_border-TeXcolor={HTML}{2E7D4F},
+  div.tip_background-TeXcolor={HTML}{EEF7F1},
+  div.tip_title-background-TeXcolor={HTML}{2E7D4F},
+  div.tip_title-foreground-TeXcolor={HTML}{FFFFFF},
+  div.hint_border-TeXcolor={HTML}{2E7D4F},
+  div.hint_background-TeXcolor={HTML}{EEF7F1},
+  div.hint_title-background-TeXcolor={HTML}{2E7D4F},
+  div.hint_title-foreground-TeXcolor={HTML}{FFFFFF},
+}
+
+% Titles of notes, warnings and other admonitions: heading font.
+\let\ann@dotitlerow\sphinxdotitlerow
+\renewcommand\sphinxdotitlerow[2]{\ann@dotitlerow{#1}{{\annheadfont #2}}}
+
+% Table header: engraved text on the slate row.
+\protected\def\sphinxstyletheadfamily{\annheadfont\color{annLens}}
+
+% -- Headings --------------------------------------------------------------
+% A lit window: the small amber tile in front of chapter labels and rubrics.
+\newcommand*\annlamp[1][annAmber]{%
+  \tikz[baseline=-0.1ex]\fill[#1, rounded corners=0.6pt]
+    (0,-0.25ex) rectangle (1.9ex,1.05ex);}
+
+\titleformat{\chapter}[display]
+  {\annheadfont\color{annSlate}}
+  {\large\annlamp\hspace{0.6em}{\color{annSteel}\MakeUppercase{\chaptertitlename}\ \thechapter}}
+  {10pt}
+  {\fontsize{26}{30}\selectfont}
+  [\vspace{6pt}{\color{annAmber}\titlerule[2.5pt]}]
+\titleformat{name=\chapter, numberless}[display]
+  {\annheadfont\color{annSlate}}
+  {}
+  {0pt}
+  {\fontsize{26}{30}\selectfont}
+  [\vspace{6pt}{\color{annAmber}\titlerule[2.5pt]}]
+\titlespacing*{\chapter}{0pt}{0pt}{22pt}
+
+\titleformat{\section}{\Large\annheadfont\color{annSlate}}
+  {{\color{annAmberDeep}\thesection}}{0.6em}{}
+\titleformat{\subsection}{\large\annheadfont\color{annSlate}}
+  {{\color{annAmberDeep}\thesubsection}}{0.6em}{}
+\titleformat{\subsubsection}{\normalsize\annheadfont\color{annSlate}}
+  {{\color{annAmberDeep}\thesubsubsection}}{0.6em}{}
+
+% Rubrics (Purpose, Before you start, Procedure, Result) are numberless
+% subsubsections. They look like the labels on a panel.
+\newcommand\ann@rubric[1]{%
+  \tikz[baseline=(t.base)]{%
+    \node[fill=annLens, text=annSlate, inner xsep=5pt, inner ysep=2.4pt,
+          font=\annheadfont\small] (t) {\MakeUppercase{#1}};
+    \fill[annAmber] (t.north west) rectangle ([xshift=2.6pt]t.south west);}}
+\titleformat{name=\subsubsection, numberless}[block]
+  {\normalsize}{}{0pt}{\ann@rubric}
+\titlespacing*{name=\subsubsection, numberless}{0pt}{14pt}{6pt}
+
+% -- Page header and footer ------------------------------------------------
+\newcommand*\ann@pagenumber{%
+  \tikz[baseline=(n.base)]\node[fill=annSlate, text=annLens,
+    rounded corners=1pt, inner xsep=3pt, inner ysep=2.2pt,
+    minimum width=8.5mm, font=\annheadfont\small] (n) {\thepage};}
+\newcommand*\ann@headtext{%
+  {\annheadfont\small\color{annSlate}\@title\sphinxheadercomma\py@release}}
+\newcommand*\ann@headmark{\raisebox{-0.6mm}{\annmark*{4.2mm}}}
+% The rules use the colours of the panel. A page style that sets the width
+% to 0pt has no rule.
+\renewcommand{\headrule}{%
+  \ifdim\headrulewidth>\z@
+    {\color{annAmber}\hrule height\headrulewidth width\headwidth}%
+    \vskip-\headrulewidth
+  \fi}
+\renewcommand{\footrule}{%
+  \ifdim\footrulewidth>\z@
+    {\color{annLens}\hrule height\footrulewidth width\headwidth}%
+    \vskip 3pt
+  \fi}
+
+% Contents, list of figures and list of tables: slate text, not link colour.
+\newcommand\anncontents{%
+  \begingroup
+    \hypersetup{linkcolor=annSlate}%
+    \sphinxtableofcontents\listoffigures\listoftables
+  \endgroup}
+
+\fancypagestyle{normal}{%
+  \fancyhf{}%
+  \fancyhead[RO]{\ann@headtext}%
+  \fancyhead[LO]{\ann@headmark}%
+  \fancyfoot[RO]{\ann@pagenumber}%
+  \fancyfoot[LO]{{\annheadfontregular\small\color{annSteel}\nouppercase{\rightmark}}}%
+  \if@twoside
+    \fancyhead[LE]{\ann@headtext}%
+    \fancyhead[RE]{\ann@headmark}%
+    \fancyfoot[LE]{\ann@pagenumber}%
+    \fancyfoot[RE]{{\annheadfontregular\small\color{annSteel}\nouppercase{\leftmark}}}%
+  \fi
+  \renewcommand{\headrulewidth}{1pt}%
+  \renewcommand{\footrulewidth}{0.6pt}%
+}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[RO]{\ann@pagenumber}%
+  \if@twoside\fancyfoot[LE]{\ann@pagenumber}\fi
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0.6pt}%
+}
+
+% A blank left page before a chapter has no header and no footer.
+\renewcommand{\cleardoublepage}{%
+  \clearpage
+  \if@twoside
+    \ifodd\c@page\else
+      \hbox{}\thispagestyle{empty}\newpage
+      \if@twocolumn\hbox{}\newpage\fi
+    \fi
+  \fi}
+
+% -- Title page -------------------------------------------------------------
+\newcommand*\ann@platerow[2]{%
+  {\annheadfont\footnotesize\color{annSteel}\MakeUppercase{#1}} &
+  {\annheadfontregular\large\color{annSlate}#2}\\[3pt]}
+
+\renewcommand{\sphinxmaketitle}{%
+  \let\sphinxrestorepageanchorsetting\relax
+  \ifHy@pageanchor\def\sphinxrestorepageanchorsetting{\Hy@pageanchortrue}\fi
+  \hypersetup{pageanchor=false}%
+  \begingroup
+    \def\endgraf{ }\def\and{\& }%
+    \pdfstringdefDisableCommands{\def\\{, }}%
+    \hypersetup{pdfauthor={\@author}, pdftitle={\@title}}%
+  \endgroup
+  \begin{titlepage}%
+    \thispagestyle{empty}%
+    \begin{tikzpicture}[remember picture, overlay]
+      % The panel: a slate band with the logo and one lit amber strip.
+      \fill[annSlate] (current page.north west)
+        rectangle ([yshift=-92mm]current page.north east);
+      \fill[annAmber] ([yshift=-92mm]current page.north west)
+        rectangle ([yshift=-95mm]current page.north east);
+      \node[anchor=west, inner sep=0pt]
+        at ([xshift=24mm, yshift=-46mm]current page.north west)
+        {\annlockup[dark]{24mm}};
+      % The foot of the page: a narrow slate band.
+      \fill[annSlate] (current page.south west)
+        rectangle ([yshift=13mm]current page.south east);
+      \node[anchor=west, text=annLens, font=\annheadfont\small]
+        at ([xshift=24mm, yshift=6.5mm]current page.south west)
+        {\anndocnumber\ \textbullet\ Issue \annissue};
+      \node[anchor=east, text=annLens, font=\annheadfontregular\small]
+        at ([xshift=-24mm, yshift=6.5mm]current page.south east)
+        {github.com/MasonicTombomb/annunciator};
+    \end{tikzpicture}\par
+    % The overlay above is in its own paragraph. Thus this space is before
+    % the title and not after it.
+    \vspace*{72mm}%
+    \noindent{\annheadfont\fontsize{40}{44}\selectfont\color{annSlate}User Manual\par}%
+    \vspace{5mm}%
+    \noindent\begin{minipage}{0.82\textwidth}
+      \raggedright\Large\color{annSteel}\annsubtitle
+    \end{minipage}\par
+    \vfill
+    % The name plate: identification data of the manual.
+    \noindent\begin{tikzpicture}
+      \node[anchor=north west, inner sep=0pt] (plate) {%
+        \renewcommand{\arraystretch}{1.15}%
+        \begin{tabular}{@{}l@{\hspace{8mm}}l@{}}
+          \ann@platerow{Document number}{\anndocnumber}
+          \ann@platerow{Issue}{\annissue}
+          \ann@platerow{Issue date}{\anndate}
+          \ann@platerow{Software}{annunciator, version \annversion}
+          \ann@platerow{Author}{\@author}
+        \end{tabular}};
+      \fill[annAmber] ([xshift=-6mm, yshift=1mm]plate.north west)
+        rectangle ([xshift=-4mm, yshift=-1mm]plate.south west);
+    \end{tikzpicture}\par
+    \vspace{14mm}%
+  \end{titlepage}%
+  \setcounter{footnote}{0}%
+  \let\thanks\relax\let\maketitle\relax
+  \clearpage
+  \ifdefined\sphinxbackoftitlepage\sphinxbackoftitlepage\fi
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \sphinxrestorepageanchorsetting
+}
+
+\endinput

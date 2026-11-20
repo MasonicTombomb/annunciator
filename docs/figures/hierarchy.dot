@@ -1,6 +1,6 @@
 digraph hierarchy {
-  rankdir=LR; fontname="Helvetica"; node [fontname="Helvetica", fontsize=10, shape=box, style="filled", fillcolor="#eef3f8", color="#35557a"]; edge [color="#35557a", arrowhead=empty, dir=back];
-  Exception [fillcolor="#eeeeee"]; UserWarning [fillcolor="#eeeeee"];
+  rankdir=LR; fontname="Helvetica"; node [fontcolor="#1E2A33", fontname="Helvetica", fontsize=10, shape=box, style="filled", fillcolor="#EDF0F3", color="#2B3A46"]; edge [fontcolor="#1E2A33", color="#2B3A46", arrowhead=empty, dir=back];
+  Exception [fillcolor="#E9E6DF"]; UserWarning [fillcolor="#E9E6DF"];
   Exception -> CodedError;
   CodedError -> ConfigurationError; CodedError -> ValidationError; CodedError -> DataError;
   CodedError -> ResourceError; ResourceError -> ResourceNotFoundError; ResourceError -> ResourceAccessError;

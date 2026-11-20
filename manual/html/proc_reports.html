@@ -5,11 +5,12 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="author" title="About these documents" href="about.html"><link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="5.10. Document your messages with Sphinx" href="proc_sphinx.html"><link rel="prev" title="5.8. Record unhandled exceptions" href="proc_hooks.html">
 
-    <!-- Generated with Sphinx 9.2.0 and Furo 2025.12.19 -->
+    <link rel="shortcut icon" href="_static/favicon.svg"><!-- Generated with Sphinx 9.2.0 and Furo 2025.12.19 -->
         <title>5.9. Examine and summarise a log - annunciator 1.1.4 User Manual (ANN-UM-001)</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/annunciator.css?v=86ad8cbd" />
     
     
 
@@ -18,18 +19,165 @@
   body {
     --color-code-background: #f2f2f2;
   --color-code-foreground: #1e1e1e;
+  --font-stack--headings: "Roboto Condensed", Bahnschrift, "DIN Alternate", "Arial Narrow", system-ui, sans-serif;
+  --color-brand-primary: #8F5B00;
+  --color-brand-content: #8F5B00;
+  --color-brand-visited: #6E4A0C;
+  --color-foreground-primary: #1E2A33;
+  --color-foreground-secondary: #46535E;
+  --color-background-primary: #FFFFFF;
+  --color-background-secondary: #FBFAF7;
+  --color-sidebar-background: #F4F1EA;
+  --color-sidebar-item-background--hover: #ECE7DA;
+  --color-sidebar-link-text: #2F3D48;
+  --color-sidebar-link-text--top-level: #1E2A33;
+  --color-table-header-background: #1E2A33;
+  --color-table-border: #D5CFC0;
+  --color-inline-code-background: #F3F0E8;
+  --color-highlighted-background: #FCEBB8;
+  --color-admonition-title--note: #2F6FA3;
+  --color-admonition-title-background--note: rgba(47, 111, 163, 0.12);
+  --color-admonition-title--seealso: #2F6FA3;
+  --color-admonition-title-background--seealso: rgba(47, 111, 163, 0.12);
+  --color-admonition-title--warning: #F5A800;
+  --color-admonition-title-background--warning: rgba(245, 168, 0, 0.12);
+  --color-admonition-title--important: #F5A800;
+  --color-admonition-title-background--important: rgba(245, 168, 0, 0.12);
+  --color-admonition-title--attention: #F5A800;
+  --color-admonition-title-background--attention: rgba(245, 168, 0, 0.12);
+  --color-admonition-title--admonition-todo: #F5A800;
+  --color-admonition-title-background--admonition-todo: rgba(245, 168, 0, 0.12);
+  --color-admonition-title--caution: #C8102E;
+  --color-admonition-title-background--caution: rgba(200, 16, 46, 0.12);
+  --color-admonition-title--danger: #C8102E;
+  --color-admonition-title-background--danger: rgba(200, 16, 46, 0.12);
+  --color-admonition-title--error: #C8102E;
+  --color-admonition-title-background--error: rgba(200, 16, 46, 0.12);
+  --color-admonition-title--tip: #2E7D4F;
+  --color-admonition-title-background--tip: rgba(46, 125, 79, 0.12);
+  --color-admonition-title--hint: #2E7D4F;
+  --color-admonition-title-background--hint: rgba(46, 125, 79, 0.12);
+  --ann-slate: #1E2A33;
+  --ann-steel: #5B6B78;
+  --ann-amber: #F5A800;
+  --ann-heading: #1E2A33;
+  --ann-plate: #1E2A33;
+  --ann-plate-text: #ECE7DA;
+  --ann-plate-muted: #AAB4BC;
+  --ann-label: #ECE7DA;
+  --ann-label-text: #1E2A33;
+  --ann-selection: rgba(245, 168, 0, 0.30);
+  --ann-figure: transparent;
   
   }
   @media not print {
     body[data-theme="dark"] {
       --color-code-background: #202020;
   --color-code-foreground: #d0d0d0;
+  --font-stack--headings: "Roboto Condensed", Bahnschrift, "DIN Alternate", "Arial Narrow", system-ui, sans-serif;
+  --color-brand-primary: #F5A800;
+  --color-brand-content: #F5A800;
+  --color-brand-visited: #D9A441;
+  --color-foreground-primary: #E8E6E1;
+  --color-foreground-secondary: #B9C0C6;
+  --color-background-primary: #12171C;
+  --color-background-secondary: #182128;
+  --color-sidebar-background: #182128;
+  --color-sidebar-item-background--hover: #22303A;
+  --color-sidebar-link-text: #C9CED2;
+  --color-sidebar-link-text--top-level: #E8E6E1;
+  --color-table-header-background: #2A3945;
+  --color-table-border: #33434F;
+  --color-inline-code-background: #1F2A33;
+  --color-highlighted-background: rgba(245, 168, 0, 0.25);
+  --color-admonition-title--note: #6FA8DC;
+  --color-admonition-title-background--note: rgba(111, 168, 220, 0.16);
+  --color-admonition-title--seealso: #6FA8DC;
+  --color-admonition-title-background--seealso: rgba(111, 168, 220, 0.16);
+  --color-admonition-title--warning: #F5A800;
+  --color-admonition-title-background--warning: rgba(245, 168, 0, 0.16);
+  --color-admonition-title--important: #F5A800;
+  --color-admonition-title-background--important: rgba(245, 168, 0, 0.16);
+  --color-admonition-title--attention: #F5A800;
+  --color-admonition-title-background--attention: rgba(245, 168, 0, 0.16);
+  --color-admonition-title--admonition-todo: #F5A800;
+  --color-admonition-title-background--admonition-todo: rgba(245, 168, 0, 0.16);
+  --color-admonition-title--caution: #FF6B7A;
+  --color-admonition-title-background--caution: rgba(255, 107, 122, 0.16);
+  --color-admonition-title--danger: #FF6B7A;
+  --color-admonition-title-background--danger: rgba(255, 107, 122, 0.16);
+  --color-admonition-title--error: #FF6B7A;
+  --color-admonition-title-background--error: rgba(255, 107, 122, 0.16);
+  --color-admonition-title--tip: #5CC28A;
+  --color-admonition-title-background--tip: rgba(92, 194, 138, 0.16);
+  --color-admonition-title--hint: #5CC28A;
+  --color-admonition-title-background--hint: rgba(92, 194, 138, 0.16);
+  --ann-slate: #22303A;
+  --ann-steel: #7B8B98;
+  --ann-amber: #F5A800;
+  --ann-heading: #F1EEE6;
+  --ann-plate: #1E2A33;
+  --ann-plate-text: #ECE7DA;
+  --ann-plate-muted: #AAB4BC;
+  --ann-label: #22303A;
+  --ann-label-text: #ECE7DA;
+  --ann-selection: rgba(245, 168, 0, 0.35);
+  --ann-figure: #F7F5F0;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
         --color-code-background: #202020;
   --color-code-foreground: #d0d0d0;
+  --font-stack--headings: "Roboto Condensed", Bahnschrift, "DIN Alternate", "Arial Narrow", system-ui, sans-serif;
+  --color-brand-primary: #F5A800;
+  --color-brand-content: #F5A800;
+  --color-brand-visited: #D9A441;
+  --color-foreground-primary: #E8E6E1;
+  --color-foreground-secondary: #B9C0C6;
+  --color-background-primary: #12171C;
+  --color-background-secondary: #182128;
+  --color-sidebar-background: #182128;
+  --color-sidebar-item-background--hover: #22303A;
+  --color-sidebar-link-text: #C9CED2;
+  --color-sidebar-link-text--top-level: #E8E6E1;
+  --color-table-header-background: #2A3945;
+  --color-table-border: #33434F;
+  --color-inline-code-background: #1F2A33;
+  --color-highlighted-background: rgba(245, 168, 0, 0.25);
+  --color-admonition-title--note: #6FA8DC;
+  --color-admonition-title-background--note: rgba(111, 168, 220, 0.16);
+  --color-admonition-title--seealso: #6FA8DC;
+  --color-admonition-title-background--seealso: rgba(111, 168, 220, 0.16);
+  --color-admonition-title--warning: #F5A800;
+  --color-admonition-title-background--warning: rgba(245, 168, 0, 0.16);
+  --color-admonition-title--important: #F5A800;
+  --color-admonition-title-background--important: rgba(245, 168, 0, 0.16);
+  --color-admonition-title--attention: #F5A800;
+  --color-admonition-title-background--attention: rgba(245, 168, 0, 0.16);
+  --color-admonition-title--admonition-todo: #F5A800;
+  --color-admonition-title-background--admonition-todo: rgba(245, 168, 0, 0.16);
+  --color-admonition-title--caution: #FF6B7A;
+  --color-admonition-title-background--caution: rgba(255, 107, 122, 0.16);
+  --color-admonition-title--danger: #FF6B7A;
+  --color-admonition-title-background--danger: rgba(255, 107, 122, 0.16);
+  --color-admonition-title--error: #FF6B7A;
+  --color-admonition-title-background--error: rgba(255, 107, 122, 0.16);
+  --color-admonition-title--tip: #5CC28A;
+  --color-admonition-title-background--tip: rgba(92, 194, 138, 0.16);
+  --color-admonition-title--hint: #5CC28A;
+  --color-admonition-title-background--hint: rgba(92, 194, 138, 0.16);
+  --ann-slate: #22303A;
+  --ann-steel: #7B8B98;
+  --ann-amber: #F5A800;
+  --ann-heading: #F1EEE6;
+  --ann-plate: #1E2A33;
+  --ann-plate-text: #ECE7DA;
+  --ann-plate-muted: #AAB4BC;
+  --ann-label: #22303A;
+  --ann-label-text: #ECE7DA;
+  --ann-selection: rgba(245, 168, 0, 0.35);
+  --ann-figure: #F7F5F0;
   
       }
     }
@@ -181,9 +329,15 @@
     <div class="sidebar-container">
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
-  
-  <span class="sidebar-brand-text">annunciator 1.1.4 User Manual (ANN-UM-001)</span>
-  
+<div class="sidebar-logo-container">
+  <img class="sidebar-logo" src="_static/annunciator-lockup-dark.svg" alt="annunciator"/>
+</div>
+<span class="ann-nameplate">
+  <span class="ann-nameplate-title">User Manual</span>
+  <span class="ann-nameplate-data">ANN-UM-001 &middot; Issue 5</span>
+  <span class="ann-nameplate-data">Software version 1.1.4</span>
+</span>
+
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">

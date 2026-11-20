@@ -248,7 +248,14 @@ and ``furo``.
       makeindex -s python.ist ANN-UM-001.idx
       pdflatex ANN-UM-001.tex
 
-4. Examine the text against the writing rules:
+4. If you changed the logo in ``docs/_static/latex/annunciatorlogo.sty``,
+   make the SVG files of the logo again:
+
+   .. code-block:: console
+
+      python tools/make_logo.py
+
+5. Examine the text against the writing rules:
 
    .. code-block:: console
 
@@ -257,5 +264,5 @@ and ``furo``.
 .. rubric:: Result
 
 The file ``docs/_build/html/index.html`` is the first page of the HTML
-form. The file ``docs/_build/latex/ANN-UM-001.pdf`` is the PDF form. Step 4
+form. The file ``docs/_build/latex/ANN-UM-001.pdf`` is the PDF form. Step 5
 shows the number of findings.

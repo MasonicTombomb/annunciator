@@ -1,4 +1,9 @@
-# annunciator
+<h1 align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MasonicTombomb/annunciator/main/docs/_static/logo/annunciator-lockup-dark.svg">
+    <img alt="annunciator" src="https://raw.githubusercontent.com/MasonicTombomb/annunciator/main/docs/_static/logo/annunciator-lockup.svg" width="380">
+  </picture>
+</h1>
 
 Error, warning and information handling and logging for Python.
 
@@ -88,7 +93,7 @@ add `--config-settings editable_mode=compat` to the `pip install` command.
 
 ## Documentation
 
-The built user manual (document ANN-UM-001, Issue 4, for version 1.1.4) is
+The built user manual (document ANN-UM-001, Issue 5, for version 1.1.4) is
 in the directory `manual` (PDF and HTML). Its source files are in the
 directory `docs`. Its structure follows ISO/IEC/IEEE 26514:2022. Its text
 follows the writing rules of ASD-STE100 Issue 9.
@@ -99,6 +104,26 @@ sphinx-build -b html docs docs/_build/html
 sphinx-build -M latexpdf docs docs/_build
 python tools/ste_check.py docs
 ```
+
+## Logo and colours
+
+The logo is an annunciator panel: a bezel with six alarm windows, one lit.
+Its source is `docs/_static/latex/annunciatorlogo.sty`; the PDF manual draws
+it from that file, and `python tools/make_logo.py` makes the SVG files in
+`docs/_static/logo` (needs `latex` and `dvisvgm`).
+
+| Colour | Hex | Use |
+| --- | --- | --- |
+| Panel slate | `#1E2A33` | bezel, title band, headings, table headers |
+| Lamp amber | `#F5A800` | the lit window, rules, accents |
+| Amber (text) | `#8F5B00` | links on light backgrounds |
+| Alarm red | `#C8102E` | cautions, errors |
+| Normal green | `#2E7D4F` | tips, correct results |
+| Advisory blue | `#2F6FA3` | notes |
+| Steel | `#5B6B78` | secondary text |
+| Lens | `#ECE7DA` | labels, text on slate |
+
+Headings use Roboto Condensed Bold.
 
 ## Licence
 

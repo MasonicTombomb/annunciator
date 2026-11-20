@@ -1,0 +1,12 @@
+{#- Sidebar brand of the annunciator manual: a name plate on the panel. -#}
+{% extends "!sidebar/brand.html" %}
+{% block brand_content %}
+<div class="sidebar-logo-container">
+  <img class="sidebar-logo" src="{{ pathto('_static/annunciator-lockup-dark.svg', 1) }}" alt="annunciator"/>
+</div>
+<span class="ann-nameplate">
+  <span class="ann-nameplate-title">User Manual</span>
+  <span class="ann-nameplate-data">{{ document_number }} &middot; Issue {{ document_issue }}</span>
+  <span class="ann-nameplate-data">Software version {{ release }}</span>
+</span>
+{% endblock brand_content %}

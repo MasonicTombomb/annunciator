@@ -65,9 +65,16 @@ Change record
      - 1.1.4
      - Changed :doc:`installation`: installation from PyPI, from GitHub and
        with conda, the tests for development, the result of
-       ``annunciator demo`` and the PDF build on Windows. Added a note about the parameters of the
-       called function to the procedure for the command ``lint`` in
-       :doc:`proc_devtools`.
+       ``annunciator demo`` and the PDF build on Windows. Added a note
+       about the parameters of the called function to the procedure for
+       the command ``lint`` in :doc:`proc_devtools`.
+   * - 5
+     - 2026-11-20
+     - 1.1.4
+     - New design: the annunciator logo, the panel colours and new
+       styles for the HTML form and the PDF form. The figures use the panel
+       colours. Added the colours of cautions and notes to
+       :doc:`about`, and a step for the logo to :doc:`installation`.
 
 Applicability
 -------------
@@ -100,3 +107,5 @@ The manual is available in two forms. The two forms have the same contents.
   function and an index.
 * The PDF form is for a printed copy. It has a table of contents, a list of
   figures, a list of tables and an index.
+
+The two forms use the same logo and the same colours.

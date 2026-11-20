@@ -1,0 +1,101 @@
+% annunciatorlogo.sty -- colours and logo of annunciator.
+%
+% This file is the source of the logo. The PDF form of the manual draws the
+% logo with these macros. The script tools/make_logo.py makes the SVG files
+% for the HTML form, the favicon and the README from the same macros.
+%
+% Macros:
+%   \annmark[<scheme>]{<size>}          the panel mark, with legend lines
+%   \annmark*[<scheme>]{<size>}         the panel mark, without legend lines
+%   \annlockup[<scheme>]{<height>}      the mark and the word "annunciator"
+%   \annwordfont                        the font of the word mark
+% <scheme> is "light" (for a light background, the default) or "dark" (for
+% a dark background).
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{annunciatorlogo}[2026/11/20 annunciator colours and logo]
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+
+% -- Panel colours ---------------------------------------------------------
+\definecolor{annSlate}{HTML}{1E2A33}     % panel slate: bezel, titles
+\definecolor{annSteel}{HTML}{5B6B78}     % steel: secondary text, rules
+\definecolor{annAmber}{HTML}{F5A800}     % lamp amber: the lit window
+\definecolor{annAmberDeep}{HTML}{8F5B00} % amber for text on paper
+\definecolor{annRed}{HTML}{C8102E}       % alarm red: ERROR, CRITICAL
+\definecolor{annGreen}{HTML}{2E7D4F}     % normal green: correct condition
+\definecolor{annBlue}{HTML}{2F6FA3}      % advisory blue: notes
+\definecolor{annLens}{HTML}{ECE7DA}      % unlit lens: light surfaces
+\definecolor{annPaper}{HTML}{FBFAF7}     % paper
+\definecolor{annTileOff}{HTML}{3A4A57}   % unlit window on the bezel
+\definecolor{annLegendOff}{HTML}{556673} % legend on an unlit window
+\definecolor{annBezelDark}{HTML}{2A3945} % bezel on a dark background
+\definecolor{annBezelEdge}{HTML}{4A5C6A} % edge of the bezel on dark
+
+% -- Word mark font: Roboto Condensed Bold (package "roboto") ---------------
+% The font definition file of Roboto uses \Roboto@@scale. Define it if the
+% package "roboto" is not loaded.
+\providecommand*\Roboto@@scale{}
+\newcommand*\annwordfont{%
+  \fontencoding{T1}\fontfamily{Roboto-LF}\fontseries{boldcondensed}%
+  \fontshape{n}\selectfont}
+
+% -- Geometry (units: 1/64 of the mark size) --------------------------------
+% Bezel 64 x 64, corner radius 12. Two columns and three rows of windows.
+% Window 21 x 12.667, spacing 4, margin 9. The top-left window is lit.
+\newif\ifann@legend
+\newif\ifann@dark
+\def\ann@scheme#1{%
+  \def\ann@tmp{#1}\def\ann@darkname{dark}%
+  \ifx\ann@tmp\ann@darkname\ann@darktrue\else\ann@darkfalse\fi}
+
+\newcommand\ann@drawmark{%
+  \ifann@dark
+    \fill[annBezelDark, draw=annBezelEdge, line width=1.2*\ann@u,
+          rounded corners=12*\ann@u] (0.6,0.6) rectangle (63.4,63.4);
+  \else
+    \fill[annSlate, rounded corners=12*\ann@u] (0,0) rectangle (64,64);
+  \fi
+  \foreach \c in {0,1}{%
+    \foreach \r in {0,1,2}{%
+      \pgfmathsetmacro\ann@x{9+\c*25}%
+      \pgfmathsetmacro\ann@y{55-\r*16.6667-12.6667}%
+      \pgfmathtruncatemacro\ann@lit{(\c==0)&&(\r==0)}%
+      \ifnum\ann@lit=1
+        \fill[annAmber, rounded corners=2*\ann@u]
+          (\ann@x,\ann@y) rectangle ++(21,12.6667);
+        \def\ann@legendcolour{annSlate}%
+      \else
+        \fill[annTileOff, rounded corners=2*\ann@u]
+          (\ann@x,\ann@y) rectangle ++(21,12.6667);
+        \def\ann@legendcolour{annLegendOff}%
+      \fi
+      \ifann@legend
+        \fill[\ann@legendcolour] (\ann@x+4.5,\ann@y+7.4) rectangle ++(12,1.9);
+        \fill[\ann@legendcolour] (\ann@x+6.5,\ann@y+3.4) rectangle ++(8,1.9);
+      \fi
+    }%
+  }%
+}
+
+% \annmark[scheme]{size} and \annmark*[scheme]{size}
+\newcommand\annmark{\@ifstar{\ann@legendfalse\ann@mark}{\ann@legendtrue\ann@mark}}
+\newcommand\ann@mark[2][light]{%
+  \ann@scheme{#1}%
+  \pgfmathsetlengthmacro\ann@u{(#2)/64}%
+  \begin{tikzpicture}[x=\ann@u, y=\ann@u, baseline=0pt]
+    \ann@drawmark
+  \end{tikzpicture}}
+
+% \annlockup[scheme]{height}: the mark and the word mark at its right.
+\newcommand\annlockup[2][light]{%
+  \ann@scheme{#1}\ann@legendtrue
+  \pgfmathsetlengthmacro\ann@u{(#2)/64}%
+  \pgfmathsetlengthmacro\ann@fs{42*\ann@u}%
+  \begin{tikzpicture}[x=\ann@u, y=\ann@u, baseline=0pt]
+    \ann@drawmark
+    \ifann@dark\def\ann@wordcolour{annLens}\else\def\ann@wordcolour{annSlate}\fi
+    \node[anchor=base west, inner sep=0pt, text=\ann@wordcolour]
+      at (76,17) {\fontsize{\ann@fs}{\ann@fs}\annwordfont annunciator};
+  \end{tikzpicture}}
+
+\endinput
