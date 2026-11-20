@@ -60,6 +60,14 @@ Change record
      - Changed the description of the HTML report in
        :doc:`proc_devtools`. The report now has the style of a printed
        industrial report.
+   * - 4
+     - 2026-11-20
+     - 1.1.4
+     - Changed :doc:`installation`: installation from PyPI, from GitHub and
+       with conda, the tests for development, the result of
+       ``annunciator demo`` and the PDF build on Windows. Added a note about the parameters of the
+       called function to the procedure for the command ``lint`` in
+       :doc:`proc_devtools`.
 
 Applicability
 -------------

@@ -34,13 +34,12 @@ From GitHub (latest `main`, or a fixed tag):
 
 ```console
 python -m pip install "git+https://github.com/MasonicTombomb/annunciator.git"
-python -m pip install "git+https://github.com/MasonicTombomb/annunciator.git@v1.1.1"
+python -m pip install "git+https://github.com/MasonicTombomb/annunciator.git@v1.1.4"
 ```
 
-With uv: `uv pip install annunciator`. In a conda environment, `pip install`
-as above works; a native conda package is also built for each release
-(`conda install -c MasonicTombomb annunciator` when it is uploaded to
-anaconda.org).
+With uv: `uv pip install annunciator`. With conda (channel `MasonicTombomb`
+on anaconda.org): `conda install -c MasonicTombomb annunciator`. In a conda
+environment, `pip install` as above also works.
 
 From a local clone: `python -m pip install .`
 
@@ -52,6 +51,7 @@ Python 3.9 or later is necessary. On Python 3.9 and 3.10, install the extra
 1. Set `__version__` in `src/annunciator/_version.py` and add an entry to
    `CHANGELOG.md`.
 2. Commit, then tag and push: `git tag v1.2.0 && git push origin main v1.2.0`.
+   The workflow starts only for a tag that starts with a lowercase `v`.
 
 The workflow `.github/workflows/release.yml` builds the sdist and wheel,
 tests them on Linux, Windows and macOS, publishes to PyPI, creates a GitHub
@@ -75,12 +75,23 @@ log.event("APP-E-0001", name="HPGe-2")
 raise CodedError(code="APP-E-0001", name="HPGe-2")
 ```
 
+## Development
+
+```console
+python -m pip install -e ".[docs,test]"
+python -m pytest
+python -m annunciator lint src
+```
+
+If PyCharm or another IDE cannot find the modules of the editable install,
+add `--config-settings editable_mode=compat` to the `pip install` command.
+
 ## Documentation
 
-The built user manual (document ANN-UM-001) is in the directory `manual`
-(PDF and HTML). Its source files are in the directory `docs`. Its
-structure follows ISO/IEC/IEEE 26514:2022. Its text follows the writing rules
-of ASD-STE100 Issue 9.
+The built user manual (document ANN-UM-001, Issue 4, for version 1.1.4) is
+in the directory `manual` (PDF and HTML). Its source files are in the
+directory `docs`. Its structure follows ISO/IEC/IEEE 26514:2022. Its text
+follows the writing rules of ASD-STE100 Issue 9.
 
 ```console
 python -m pip install ".[docs]"

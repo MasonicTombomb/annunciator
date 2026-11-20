@@ -65,6 +65,15 @@ types. The exit status is 1 if the command found an ``undefined`` or a
 
 .. note::
 
+   For ``missing-field``, the command uses the parameters of the called
+   function. A keyword argument that is a parameter of that function is
+   not a value for a replacement field. For example, in
+   ``log.event("APP-E-0001", strict=True)`` the argument ``strict`` is a
+   parameter of ``event``. All other keyword arguments, for example
+   ``operation`` or ``key``, are values for replacement fields.
+
+.. note::
+
    Add this command to the automatic checks of your project. Then an
    incorrect code cannot go into a release.
 

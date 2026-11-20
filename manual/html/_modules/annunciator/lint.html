@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="author" title="About these documents" href="../../about.html"><link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html">
 
     <!-- Generated with Sphinx 9.2.0 and Furo 2025.12.19 -->
-        <title>annunciator.lint - annunciator 1.1.1 User Manual (ANN-UM-001)</title>
+        <title>annunciator.lint - annunciator 1.1.4 User Manual (ANN-UM-001)</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -160,7 +160,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">annunciator 1.1.1 User Manual (ANN-UM-001)</div></a>
+      <a href="../../index.html"><div class="brand">annunciator 1.1.4 User Manual (ANN-UM-001)</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -181,7 +181,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">annunciator 1.1.1 User Manual (ANN-UM-001)</span>
+  <span class="sidebar-brand-text">annunciator 1.1.4 User Manual (ANN-UM-001)</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -291,19 +291,39 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Dict</span><span class="p">,</span> <span class="n">FrozenSet</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span>
+    <span class="n">Union</span><span class="p">,</span>
+<span class="p">)</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">._coded</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodedMixin</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.catalogue</span><span class="w"> </span><span class="kn">import</span> <span class="n">CODE_PATTERN</span><span class="p">,</span> <span class="n">catalogues</span><span class="p">,</span> <span class="n">lookup</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"LintFinding"</span><span class="p">,</span> <span class="s2">"lint_paths"</span><span class="p">]</span>
 
-<span class="c1">#: Keyword arguments that are not replacement fields.</span>
-<span class="n">_RESERVED</span> <span class="o">=</span> <span class="p">{</span>
+<span class="c1">#: Parameters of ``StructuredLogger.event``. ``event`` gives all other</span>
+<span class="c1">#: keyword arguments to the message text (``**fields``), also names such as</span>
+<span class="c1">#: ``operation``, ``category`` or ``key``.</span>
+<span class="n">_EVENT_PARAMETERS</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">({</span><span class="s2">"code"</span><span class="p">,</span> <span class="s2">"strict"</span><span class="p">,</span> <span class="s2">"exc_info"</span><span class="p">,</span> <span class="s2">"stacklevel"</span><span class="p">})</span>
+
+<span class="c1">#: Parameters of :func:`annunciator.warn`.</span>
+<span class="n">_WARN_PARAMETERS</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">"message"</span><span class="p">,</span> <span class="s2">"category"</span><span class="p">,</span> <span class="s2">"code"</span><span class="p">,</span> <span class="s2">"stacklevel"</span><span class="p">,</span> <span class="s2">"context"</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1">#: Keyword arguments that are not replacement fields in a call to a</span>
+<span class="c1">#: function that the check does not know. This is the union of the</span>
+<span class="c1">#: parameters of the functions that take a ``code=`` keyword: the log</span>
+<span class="c1">#: methods (``log``, ``info``, ..., ``once``, ``every``, ``throttle``),</span>
+<span class="c1">#: ``warn``, the coded errors and warnings and the soft checks.</span>
+<span class="n">_RESERVED</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">({</span>
     <span class="s2">"code"</span><span class="p">,</span> <span class="s2">"strict"</span><span class="p">,</span> <span class="s2">"exc_info"</span><span class="p">,</span> <span class="s2">"stack_info"</span><span class="p">,</span> <span class="s2">"stacklevel"</span><span class="p">,</span> <span class="s2">"context"</span><span class="p">,</span>
-    <span class="s2">"cause"</span><span class="p">,</span> <span class="s2">"remedy"</span><span class="p">,</span> <span class="s2">"category"</span><span class="p">,</span> <span class="s2">"severity"</span><span class="p">,</span> <span class="s2">"logger"</span><span class="p">,</span> <span class="s2">"key"</span><span class="p">,</span> <span class="s2">"operation"</span><span class="p">,</span>
-<span class="p">}</span>
+    <span class="s2">"cause"</span><span class="p">,</span> <span class="s2">"remedy"</span><span class="p">,</span> <span class="s2">"category"</span><span class="p">,</span> <span class="s2">"severity"</span><span class="p">,</span> <span class="s2">"logger"</span><span class="p">,</span> <span class="s2">"key"</span><span class="p">,</span> <span class="s2">"message"</span><span class="p">,</span>
+    <span class="s2">"on_fail"</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">,</span>
+<span class="p">})</span>
 
 
 <div class="viewcode-block" id="LintFinding">
@@ -359,6 +379,87 @@
     <span class="k">return</span> <span class="kc">None</span>
 
 
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_none</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ast</span><span class="o">.</span><span class="n">AST</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Constant</span><span class="p">)</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_gives_message</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">Call</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Return ``True`` if a call gives its own message text.</span>
+
+<span class="sd">    A message text replaces the text of the definition. Thus the</span>
+<span class="sd">    replacement fields are not necessary. ``None`` (for example</span>
+<span class="sd">    ``warn(None, DataQualityWarning, code=...)``) is not a message text.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">args</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">_is_none</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="nb">any</span><span class="p">(</span>
+        <span class="n">keyword</span><span class="o">.</span><span class="n">arg</span> <span class="o">==</span> <span class="s2">"message"</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">_is_none</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">keywords</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_callee_name</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">Call</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">id</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Attribute</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">attr</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_init_parameters</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Return the named parameters of ``__init__`` in the coded part of the MRO."""</span>
+    <span class="n">names</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">klass</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__mro__</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">CodedMixin</span><span class="p">)):</span>
+            <span class="k">continue</span>
+        <span class="n">init</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">klass</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"__init__"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">init</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">names</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="n">name</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">signature</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="s2">"self"</span>
+            <span class="ow">and</span> <span class="n">parameter</span><span class="o">.</span><span class="n">kind</span>
+            <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">VAR_POSITIONAL</span><span class="p">,</span> <span class="n">parameter</span><span class="o">.</span><span class="n">VAR_KEYWORD</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">names</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_coded_classes</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">FrozenSet</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">FrozenSet</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]:</span>
+<span class="w">    </span><span class="sd">"""Map the names of the loaded coded errors and warnings to their data.</span>
+
+<span class="sd">    The data is the set of parameters that are not replacement fields,</span>
+<span class="sd">    and the set of fields that the class supplies itself. If two classes</span>
+<span class="sd">    have the same name, the function joins their sets. Thus the check</span>
+<span class="sd">    does not report a field that one of the classes accepts.</span>
+<span class="sd">    """</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">AggregateError</span>
+
+    <span class="n">found</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">pending</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">CodedMixin</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">CodedMixin</span><span class="p">]</span>
+    <span class="n">seen</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">CodedMixin</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">pending</span><span class="p">:</span>
+        <span class="bp">cls</span> <span class="o">=</span> <span class="n">pending</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="n">pending</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">())</span>
+        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="n">CodedMixin</span><span class="p">:</span>
+            <span class="k">continue</span>  <span class="c1"># the base class is not called with a code</span>
+        <span class="n">parameters</span><span class="p">,</span> <span class="n">implied</span> <span class="o">=</span> <span class="n">found</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="p">(</span><span class="nb">set</span><span class="p">(),</span> <span class="nb">set</span><span class="p">()))</span>
+        <span class="n">parameters</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">_init_parameters</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">|</span> <span class="p">{</span><span class="s2">"code"</span><span class="p">})</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">AggregateError</span><span class="p">):</span>
+            <span class="n">implied</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"count"</span><span class="p">)</span>  <span class="c1"># set from the length of ``errors``</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="n">name</span><span class="p">:</span> <span class="p">(</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">parameters</span><span class="p">),</span> <span class="nb">frozenset</span><span class="p">(</span><span class="n">implied</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">implied</span><span class="p">)</span> <span class="ow">in</span> <span class="n">found</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">}</span>
+
+
 <span class="k">def</span><span class="w"> </span><span class="nf">_python_files</span><span class="p">(</span><span class="n">paths</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
     <span class="n">files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
@@ -406,6 +507,7 @@
     <span class="n">wanted</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">prefixes</span><span class="p">)</span> <span class="k">if</span> <span class="n">prefixes</span> <span class="k">else</span> <span class="nb">set</span><span class="p">(</span><span class="n">registered</span><span class="p">)</span>
     <span class="n">findings</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LintFinding</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">used</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">coded</span> <span class="o">=</span> <span class="n">_coded_classes</span><span class="p">()</span>
 
     <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">_python_files</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
@@ -416,34 +518,48 @@
         <span class="n">reported</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ast</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Call</span><span class="p">):</span>
-                <span class="n">code</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="n">target</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ast</span><span class="o">.</span><span class="n">AST</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">call_code</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="n">is_event</span> <span class="o">=</span> <span class="p">(</span>
                     <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Attribute</span><span class="p">)</span>
                     <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">attr</span> <span class="o">==</span> <span class="s2">"event"</span>
                 <span class="p">)</span>
                 <span class="k">if</span> <span class="n">is_event</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
-                    <span class="n">target</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                    <span class="n">code</span> <span class="o">=</span> <span class="n">_literal_code</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+                    <span class="n">call_code</span> <span class="o">=</span> <span class="n">_literal_code</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
                 <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">keywords</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">keyword</span><span class="o">.</span><span class="n">arg</span> <span class="o">==</span> <span class="s2">"code"</span> <span class="ow">and</span> <span class="n">_literal_code</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
-                        <span class="n">target</span> <span class="o">=</span> <span class="n">keyword</span><span class="o">.</span><span class="n">value</span>
-                        <span class="n">code</span> <span class="o">=</span> <span class="n">_literal_code</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-                <span class="n">definition</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">(</span><span class="n">code</span><span class="p">)</span> <span class="k">if</span> <span class="n">code</span> <span class="k">else</span> <span class="kc">None</span>
-                <span class="k">if</span> <span class="n">definition</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">code</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">wanted</span><span class="p">:</span>
+                        <span class="n">call_code</span> <span class="o">=</span> <span class="n">_literal_code</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">call_code</span> <span class="ow">or</span> <span class="n">call_code</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">wanted</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">definition</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">(</span><span class="n">call_code</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">definition</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="k">continue</span>
                 <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">arg</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">keywords</span><span class="p">):</span>
                     <span class="k">continue</span>  <span class="c1"># ``**fields``: the values are not known</span>
-                <span class="n">given</span> <span class="o">=</span> <span class="p">{</span><span class="n">keyword</span><span class="o">.</span><span class="n">arg</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">keywords</span><span class="p">}</span> <span class="o">-</span> <span class="n">_RESERVED</span>
+                <span class="c1"># Only the parameters of the called function are not</span>
+                <span class="c1"># replacement fields. A name that is a parameter of one</span>
+                <span class="c1"># function can be a field of another (``event`` gives</span>
+                <span class="c1"># ``operation``, ``key`` or ``category`` to the text).</span>
+                <span class="n">callee</span> <span class="o">=</span> <span class="n">_callee_name</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+                <span class="n">implied</span><span class="p">:</span> <span class="n">FrozenSet</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">is_event</span><span class="p">:</span>
+                    <span class="n">reserved</span> <span class="o">=</span> <span class="n">_EVENT_PARAMETERS</span>
+                <span class="k">elif</span> <span class="n">callee</span> <span class="o">==</span> <span class="s2">"warn"</span><span class="p">:</span>
+                    <span class="n">reserved</span> <span class="o">=</span> <span class="n">_WARN_PARAMETERS</span>
+                <span class="k">elif</span> <span class="n">callee</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">callee</span> <span class="ow">in</span> <span class="n">coded</span><span class="p">:</span>
+                    <span class="n">reserved</span><span class="p">,</span> <span class="n">implied</span> <span class="o">=</span> <span class="n">coded</span><span class="p">[</span><span class="n">callee</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">reserved</span> <span class="o">=</span> <span class="n">_RESERVED</span>
+                <span class="n">given</span> <span class="o">=</span> <span class="p">{</span><span class="n">keyword</span><span class="o">.</span><span class="n">arg</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">keywords</span><span class="p">}</span> <span class="o">-</span> <span class="n">reserved</span>
+                <span class="n">given</span> <span class="o">|=</span> <span class="n">implied</span>
                 <span class="n">missing</span> <span class="o">=</span> <span class="p">[</span>
                     <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">definition</span><span class="o">.</span><span class="n">field_names</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">given</span>
                 <span class="p">]</span>
                 <span class="c1"># A message text that the call gives replaces the fields.</span>
-                <span class="n">has_message</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_event</span>
+                <span class="n">has_message</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">is_event</span> <span class="ow">and</span> <span class="n">_gives_message</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">missing</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">has_message</span><span class="p">:</span>
                     <span class="n">findings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                         <span class="n">LintFinding</span><span class="p">(</span>
-                            <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">),</span> <span class="n">node</span><span class="o">.</span><span class="n">lineno</span><span class="p">,</span> <span class="s2">"missing-field"</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span>
+                            <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">),</span> <span class="n">node</span><span class="o">.</span><span class="n">lineno</span><span class="p">,</span> <span class="s2">"missing-field"</span><span class="p">,</span> <span class="n">call_code</span><span class="p">,</span>
                             <span class="s2">"no value for: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing</span><span class="p">),</span>
                         <span class="p">)</span>
                     <span class="p">)</span>
@@ -492,7 +608,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 2026-11-13</div>
+              Last updated on 2026-11-20</div>
           </div>
           <div class="right-details">
             
@@ -507,7 +623,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=58fbf978"></script>
+</div><script src="../../_static/documentation_options.js?v=00f267c6"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

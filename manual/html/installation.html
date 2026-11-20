@@ -6,7 +6,7 @@
 <link rel="author" title="About these documents" href="about.html"><link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="5. Procedures" href="procedures.html"><link rel="prev" title="3. Concept of operations" href="concept.html">
 
     <!-- Generated with Sphinx 9.2.0 and Furo 2025.12.19 -->
-        <title>4. Installation - annunciator 1.1.1 User Manual (ANN-UM-001)</title>
+        <title>4. Installation - annunciator 1.1.4 User Manual (ANN-UM-001)</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -161,7 +161,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">annunciator 1.1.1 User Manual (ANN-UM-001)</div></a>
+      <a href="index.html"><div class="brand">annunciator 1.1.4 User Manual (ANN-UM-001)</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -182,7 +182,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
-  <span class="sidebar-brand-text">annunciator 1.1.1 User Manual (ANN-UM-001)</span>
+  <span class="sidebar-brand-text">annunciator 1.1.4 User Manual (ANN-UM-001)</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -291,7 +291,10 @@
 <td><p>None for the library. Python 3.9 and 3.10 must have the package
 <code class="docutils literal notranslate"><span class="pre">tomli</span></code> to read TOML files.</p></td>
 </tr>
-<tr class="row-odd"><td><p>To build this manual</p></td>
+<tr class="row-odd"><td><p>To do the tests</p></td>
+<td><p>The package <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, version 7 or later.</p></td>
+</tr>
+<tr class="row-even"><td><p>To build this manual</p></td>
 <td><p>The packages <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> and <code class="docutils literal notranslate"><span class="pre">furo</span></code>. A LaTeX system is necessary for
 the PDF form.</p></td>
 </tr>
@@ -306,15 +309,20 @@ the PDF form.</p></td>
 <p class="rubric">Before you start</p>
 <ul class="simple">
 <li><p>Make sure that Python 3.9 or later is installed.</p></li>
-<li><p>Get the software package <code class="docutils literal notranslate"><span class="pre">annunciator</span></code>. The package is a directory or
-a <code class="docutils literal notranslate"><span class="pre">.whl</span></code> file.</p></li>
+<li><p>Make sure that the computer can connect to the Python Package Index
+(PyPI). If it cannot connect, get the software package <code class="docutils literal notranslate"><span class="pre">annunciator</span></code>.
+The package is a directory or a <code class="docutils literal notranslate"><span class="pre">.whl</span></code> file.</p></li>
 </ul>
 <p class="rubric">Procedure</p>
 <ol class="arabic">
 <li><p>Open a terminal.</p></li>
-<li><p>If you use a virtual environment, activate it.</p></li>
-<li><p>Go to the directory that contains the file <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p></li>
-<li><p>Install the library:</p>
+<li><p>If you use a virtual environment or a conda environment, activate it.</p></li>
+<li><p>Install the library from PyPI:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pip install annunciator</span>
+</pre></div>
+</div>
+<p>If you have the software package, go to the directory that contains
+the file <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> and do this command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pip install .</span>
 </pre></div>
 </div>
@@ -323,7 +331,7 @@ for the full stop.</p>
 </li>
 <li><p>If your Python version is 3.9 or 3.10 and you use TOML files, install
 the extra <code class="docutils literal notranslate"><span class="pre">toml</span></code>:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pip install ".[toml]"</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pip install "annunciator[toml]"</span>
 </pre></div>
 </div>
 </li>
@@ -331,6 +339,23 @@ the extra <code class="docutils literal notranslate"><span class="pre">toml</spa
 <p class="rubric">Result</p>
 <p>The library is installed. Do the procedure
 <a class="reference internal" href="#verify-install"><span class="std std-ref">Make sure that the installation is correct</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also use these sources:</p>
+<ul>
+<li><p>GitHub. To install a specified version, give its tag, for example
+<code class="docutils literal notranslate"><span class="pre">v1.1.4</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pip install "git+https://github.com/MasonicTombomb/annunciator.git@v1.1.4"</span>
+</pre></div>
+</div>
+</li>
+<li><p>The conda channel <code class="docutils literal notranslate"><span class="pre">MasonicTombomb</span></code> on anaconda.org:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda install -c MasonicTombomb annunciator</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
 </section>
 <section id="make-sure-that-the-installation-is-correct">
 <span id="verify-install"></span><h2><span class="section-number">4.3. </span>Make sure that the installation is correct<a class="headerlink" href="#make-sure-that-the-installation-is-correct" title="Link to this heading">¶</a></h2>
@@ -351,8 +376,14 @@ operates.</p>
 </li>
 </ol>
 <p class="rubric">Result</p>
-<p>Step 1 shows <code class="docutils literal notranslate"><span class="pre">annunciator</span></code> and the version number. Step 2 shows seven
-lines, one for each severity, and one line with the code <code class="docutils literal notranslate"><span class="pre">ANN-E-0001</span></code>.</p>
+<p>Step 1 shows <code class="docutils literal notranslate"><span class="pre">annunciator</span></code> and the version number. Step 2 shows these
+lines:</p>
+<ul class="simple">
+<li><p>One line with the code <code class="docutils literal notranslate"><span class="pre">ANN-D-0010</span></code>. This line shows the configuration
+of the logging.</p></li>
+<li><p>Seven lines, one for each severity.</p></li>
+<li><p>One line with the code <code class="docutils literal notranslate"><span class="pre">ANN-E-0001</span></code>, with its cause and its remedy.</p></li>
+</ul>
 <p>If the terminal cannot find the command <code class="docutils literal notranslate"><span class="pre">annunciator</span></code>, use
 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">annunciator</span></code> as a replacement. Refer to
 <a class="reference internal" href="messages.html#troubleshooting"><span class="std std-ref">Problems without a message code</span></a>.</p>
@@ -366,23 +397,40 @@ a change in a source file has an immediate effect.</p>
 <ol class="arabic">
 <li><p>Go to the directory that contains the file <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p></li>
 <li><p>Install the library in the editable mode, with the tools for the
-manual:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pip install -e ".[docs]"</span>
+manual and for the tests:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pip install -e ".[docs,test]"</span>
+</pre></div>
+</div>
+</li>
+<li><p>Do the tests:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pytest</span>
 </pre></div>
 </div>
 </li>
 </ol>
 <p class="rubric">Result</p>
 <p>The command <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">show</span> <span class="pre">annunciator</span></code> shows the path of your
-source directory.</p>
+source directory. Step 3 shows that all tests passed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some development environments, for example PyCharm, cannot find the
+modules of a library in the default editable mode. If your development
+environment cannot find the modules, use this command in step 2:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pip install -e ".[docs,test]" --config-settings editable_mode=compat</span>
+</pre></div>
+</div>
+</div>
 </section>
 <section id="upgrade-the-library">
 <h2><span class="section-number">4.5. </span>Upgrade the library<a class="headerlink" href="#upgrade-the-library" title="Link to this heading">¶</a></h2>
 <p class="rubric">Procedure</p>
 <ol class="arabic">
-<li><p>Get the new software package.</p></li>
-<li><p>Go to the directory that contains the new file <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p></li>
-<li><p>Install the new version:</p>
+<li><p>Install the new version from PyPI:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pip install --upgrade annunciator</span>
+</pre></div>
+</div>
+<p>If you have the new software package, go to the directory that
+contains the new file <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> and do this command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pip install --upgrade .</span>
 </pre></div>
 </div>
@@ -428,6 +476,15 @@ and <code class="docutils literal notranslate"><span class="pre">furo</span></co
 </li>
 <li><p>If you must have the PDF form, build it:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sphinx-build -M latexpdf docs docs/_build</span>
+</pre></div>
+</div>
+<p>This command uses <code class="docutils literal notranslate"><span class="pre">latexmk</span></code>, and <code class="docutils literal notranslate"><span class="pre">latexmk</span></code> uses Perl. If the
+command fails on Windows, go to the directory <code class="docutils literal notranslate"><span class="pre">docs/_build/latex</span></code>
+and do these commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pdflatex ANN-UM-001.tex</span>
+<span class="go">pdflatex ANN-UM-001.tex</span>
+<span class="go">makeindex -s python.ist ANN-UM-001.idx</span>
+<span class="go">pdflatex ANN-UM-001.tex</span>
 </pre></div>
 </div>
 </li>
@@ -479,7 +536,7 @@ shows the number of findings.</p>
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 2026-11-13</div>
+              Last updated on 2026-11-20</div>
           </div>
           <div class="right-details">
             
@@ -519,7 +576,7 @@ shows the number of findings.</p>
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=58fbf978"></script>
+</div><script src="_static/documentation_options.js?v=00f267c6"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>

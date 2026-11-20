@@ -229,7 +229,7 @@ class Run:
 
     @property
     def exit_code(self) -> int:
-        """An exit status for the program: 0, 1 or 2.
+        """The exit status for the program. The value is 0, 1 or 2.
 
         The value is 0 if the run has no errors, 1 if the worst
         severity is ``ERROR`` and 2 if it is ``CRITICAL``.

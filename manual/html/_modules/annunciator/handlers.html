@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="author" title="About these documents" href="../../about.html"><link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html">
 
     <!-- Generated with Sphinx 9.2.0 and Furo 2025.12.19 -->
-        <title>annunciator.handlers - annunciator 1.1.1 User Manual (ANN-UM-001)</title>
+        <title>annunciator.handlers - annunciator 1.1.4 User Manual (ANN-UM-001)</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -160,7 +160,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">annunciator 1.1.1 User Manual (ANN-UM-001)</div></a>
+      <a href="../../index.html"><div class="brand">annunciator 1.1.4 User Manual (ANN-UM-001)</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -181,7 +181,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">annunciator 1.1.1 User Manual (ANN-UM-001)</span>
+  <span class="sidebar-brand-text">annunciator 1.1.4 User Manual (ANN-UM-001)</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -509,11 +509,12 @@
         <span class="n">record</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="s2">"ann_context"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">record</span><span class="o">.</span><span class="n">ann_context</span> <span class="o">=</span> <span class="n">get_context</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">record</span><span class="o">.</span><span class="n">exc_info</span> <span class="ow">and</span> <span class="n">record</span><span class="o">.</span><span class="n">exc_info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">exc</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">exc_info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">exc</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">exc_info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">record</span><span class="o">.</span><span class="n">exc_info</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exc</span><span class="p">,</span> <span class="ne">BaseException</span><span class="p">):</span>
             <span class="n">record</span><span class="o">.</span><span class="n">ann_exception</span> <span class="o">=</span> <span class="n">ExceptionInfo</span><span class="o">.</span><span class="n">from_exception</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="s2">"ann_code"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">exc</span><span class="p">,</span> <span class="s2">"code"</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
-                <span class="n">record</span><span class="o">.</span><span class="n">ann_code</span> <span class="o">=</span> <span class="n">exc</span><span class="o">.</span><span class="n">code</span>
+            <span class="n">exc_code</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">exc</span><span class="p">,</span> <span class="s2">"code"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="s2">"ann_code"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">exc_code</span><span class="p">:</span>
+                <span class="n">record</span><span class="o">.</span><span class="n">ann_code</span> <span class="o">=</span> <span class="n">exc_code</span>
                 <span class="n">record</span><span class="o">.</span><span class="n">ann_cause</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">exc</span><span class="p">,</span> <span class="s2">"cause"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
                 <span class="n">record</span><span class="o">.</span><span class="n">ann_remedy</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">exc</span><span class="p">,</span> <span class="s2">"remedy"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
@@ -615,7 +616,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 2026-11-13</div>
+              Last updated on 2026-11-20</div>
           </div>
           <div class="right-details">
             
@@ -630,7 +631,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=58fbf978"></script>
+</div><script src="../../_static/documentation_options.js?v=00f267c6"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

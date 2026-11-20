@@ -120,8 +120,8 @@ def _is_none(node: Optional[ast.AST]) -> bool:
 def _gives_message(node: ast.Call) -> bool:
     """Return ``True`` if a call gives its own message text.
 
-    A message text replaces the text of the definition, so the call does
-    not need the replacement fields. ``None`` (for example
+    A message text replaces the text of the definition. Thus the
+    replacement fields are not necessary. ``None`` (for example
     ``warn(None, DataQualityWarning, code=...)``) is not a message text.
     """
     if node.args and not _is_none(node.args[0]):
@@ -168,8 +168,8 @@ def _coded_classes() -> Dict[str, Tuple[FrozenSet[str], FrozenSet[str]]]:
 
     The data is the set of parameters that are not replacement fields,
     and the set of fields that the class supplies itself. If two classes
-    have the same name, the sets are joined, so that the check does not
-    report a field that one of the classes accepts.
+    have the same name, the function joins their sets. Thus the check
+    does not report a field that one of the classes accepts.
     """
     from .errors import AggregateError
 

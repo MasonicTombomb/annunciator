@@ -15,8 +15,8 @@ copyright = "2026, Tom Scott"
 version = __version__
 release = __version__
 document_number = "ANN-UM-001"
-document_issue = "3"
-document_date = "2026-11-13"
+document_issue = "4"
+document_date = "2026-11-20"
 today = document_date
 
 # -- General ----------------------------------------------------------------
