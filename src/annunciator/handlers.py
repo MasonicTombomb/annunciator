@@ -221,11 +221,12 @@ class AsyncQueueHandler(logging.handlers.QueueHandler):
         record = copy.copy(record)
         if getattr(record, "ann_context", None) is None:
             record.ann_context = get_context()
-        if record.exc_info and record.exc_info[1] is not None:
-            exc = record.exc_info[1]
+        exc = record.exc_info[1] if record.exc_info else None
+        if isinstance(exc, BaseException):
             record.ann_exception = ExceptionInfo.from_exception(exc)
-            if getattr(record, "ann_code", None) is None and getattr(exc, "code", None):
-                record.ann_code = exc.code
+            exc_code = getattr(exc, "code", None)
+            if getattr(record, "ann_code", None) is None and exc_code:
+                record.ann_code = exc_code
                 record.ann_cause = getattr(exc, "cause", "")
                 record.ann_remedy = getattr(exc, "remedy", "")
         try:

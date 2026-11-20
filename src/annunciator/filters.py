@@ -138,6 +138,7 @@ class CodeFilter(logging.Filter):
         code = getattr(record, "ann_code", None)
         if not code:
             return self.pass_uncoded
+        code = str(code)
         if any(fnmatch.fnmatchcase(code, item) for item in self.exclude):
             return False
         if not self.include:

@@ -51,7 +51,11 @@ class EventCapture(logging.Handler):
     @property
     def codes(self) -> List[str]:
         """The message codes of the events that have a code."""
-        return [event.code for event in self.events if event.code]
+        codes: List[str] = []
+        for event in self.events:
+            if event.code:
+                codes.append(event.code)
+        return codes
 
     @property
     def messages(self) -> List[str]:

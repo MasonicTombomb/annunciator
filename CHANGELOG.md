@@ -1,5 +1,21 @@
 # Change record
 
+## 1.1.4 (2026-11-20)
+
+Fixed:
+
+- `CodeFilter` accepts a message code that is not text (for example an
+  integer). Before, the filter raised `TypeError` in the logging call.
+- `Event.from_dict` ignores an `exception` or `source` entry that is not
+  a mapping. Before, a malformed event record raised `AttributeError`.
+- Type fixes in `events`, `handlers`, `hooks`, `testing`, `formatters` and
+  `sphinxext`. The PyCharm inspections give no warnings or errors for
+  these modules.
+
+Added:
+
+- Tests of unusual record and event data (`tests/test_robustness.py`).
+
 ## 1.1.3 (2026-11-19)
 
 Fixed:

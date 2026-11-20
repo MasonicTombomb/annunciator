@@ -75,7 +75,7 @@ def supports_colour(stream: Any = None) -> bool:
         try:
             import ctypes
 
-            kernel32 = ctypes.windll.kernel32  # type: ignore[attr-defined]
+            kernel32 = ctypes.WinDLL("kernel32")  # type: ignore[attr-defined]
             for handle_id in (-11, -12):
                 handle = kernel32.GetStdHandle(handle_id)
                 mode = ctypes.c_ulong()

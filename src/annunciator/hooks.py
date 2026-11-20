@@ -113,6 +113,7 @@ def install_hooks(
 
             def excepthook(exc_type, exc, tb):
                 if exc is None or issubclass(exc_type, (KeyboardInterrupt, SystemExit)):
+                    # noinspection PyTypeChecker
                     previous_except(exc_type, exc, tb)
                     return
                 try:

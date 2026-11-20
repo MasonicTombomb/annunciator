@@ -73,7 +73,7 @@ class CatalogueDirective(Directive):
 
         module = self.options.get("module")
         if module:
-            importlib.import_module(module)
+            importlib.import_module(str(module))
         catalogue = get_catalogue(self.arguments[0].strip())
         items = catalogue.select(
             minimum=self.options.get("min-severity"),

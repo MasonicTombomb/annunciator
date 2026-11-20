@@ -332,8 +332,14 @@ class Event:
             fields=dict(data.get("fields", {}) or {}),
             cause=str(data.get("cause", "")),
             remedy=str(data.get("remedy", "")),
-            exception=ExceptionInfo.from_dict(exception) if exception else None,
-            source=SourceLocation.from_dict(source) if source else None,
+            exception=(
+                ExceptionInfo.from_dict(exception)
+                if isinstance(exception, Mapping) and exception else None
+            ),
+            source=(
+                SourceLocation.from_dict(source)
+                if isinstance(source, Mapping) and source else None
+            ),
             timestamp=timestamp,
             process=int(data.get("process", 0) or 0),
             thread=str(data.get("thread", "")),
@@ -360,7 +366,9 @@ class Event:
         """
         fields: Dict[str, Any] = {}
         ctx = getattr(record, "ann_context", None)
-        fields.update(get_context() if ctx is None else ctx)
+        if ctx is None:
+            ctx = get_context()
+        fields.update(ctx)
         fields.update(getattr(record, "ann_fields", None) or {})
         code = getattr(record, "ann_code", None)
         cause = getattr(record, "ann_cause", "") or ""
